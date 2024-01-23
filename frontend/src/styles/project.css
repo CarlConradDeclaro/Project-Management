@@ -1,0 +1,62 @@
+.projects-sidebar {     
+    display: flex;
+   }
+  
+  .project-content {
+    width: 85%;
+    margin: 5px;
+    border-radius: 10px;
+    }
+
+   .project-content .header{
+    max-width: 99%;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+   }
+
+   .project-content .users-project{
+    max-width: 99%;
+    height: 100vh ;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+   }
+
+
+   .header{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+   }
+
+   .project-search input{
+     width: 250px;
+     height: 30px;
+     padding: 5px;
+     border-radius: 8px;
+     outline: none;
+     border: none;
+     font-size: 18px;
+     background-color: #F7F6F4;
+   }
+
+   .users-project .create{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+   }
+   .create h2{
+    background-color: orangered;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+   }
+   
