@@ -9,8 +9,8 @@ function Projects() {
       <div className="projects-sidebar">        
           
           
-             <Sidebar  />
-
+             <Sidebar   />
+  
              
       
             <div className="project-content">
@@ -22,7 +22,7 @@ function Projects() {
 
 
                         <div className="project-profile">
-                               
+                              
                         </div>
                    </div>
 
@@ -35,7 +35,7 @@ function Projects() {
                         <div className="project">
 
                            <div className="img">
-                               <img src="./photos/nft.jpg" alt="picture"></img>
+                               <img src="../nft.jpg" alt="picture"/>
                            </div>
 
                            <div className="prjTitle">
@@ -43,11 +43,18 @@ function Projects() {
                            </div>
 
                            <div className="description">
-
+                                    <p>
+                                        lloresfjsdfsdfsfdfgggdggffgdgfdfdfsdfsdfdsfdfgdghgjknfgjknfgjkfdgjkfdgdgg   
+                                     </p>
                            </div>
 
                            <div className="category"> 
-
+                                <div className="cat1">
+                                    <p className="selectedCat">website</p>
+                                </div>
+                                <div className="cat2">
+                                    <p className="selectedCat">andriod</p>
+                                </div>
                            </div>
 
                            <div className="people"> 

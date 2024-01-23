@@ -1,4 +1,6 @@
-.projects-sidebar {     
+    
+  
+  .projects-sidebar {     
     display: flex;
    }
   
@@ -60,3 +62,52 @@
     color: white;
    }
    
+
+   .users-project .project{
+    width: 250px;
+    height: auto;
+    background-color: aqua;
+    padding: 5px ;
+    cursor: pointer;
+    border-radius: 5px;
+   }
+
+   .project img{
+     margin-left: 10px;
+     margin-right: 10px;
+     margin-top: 10px;
+ 
+    width: 230px;
+    height: 160px;
+   }
+   .project .prjTitle{
+   
+   }
+
+   .project p{
+    word-wrap: break-word; 
+    max-width: 100%;
+    font-size: 15px;
+   }
+
+   .category {
+    display: flex;
+    margin: 10px;
+    
+  }
+  
+  .category div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    width: 80px;
+    height: 30px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+
+ 
+  
