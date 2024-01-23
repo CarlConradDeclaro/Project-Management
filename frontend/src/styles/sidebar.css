@@ -1,0 +1,36 @@
+.sidebar {
+   max-width: 15%;
+   min-height: 95vh;
+   background-color: #FFFFFF;
+   margin: 10px;
+   border-radius: 10px;
+ }
+ 
+ 
+ .sidebar div h2 {
+   font-size: 20px;
+   color: #D1D1D3;
+ }
+ 
+ .sidebar div {
+   display: flex;
+   justify-content: center;
+   transition: background-color 0.3s, border-right 0.3s, color 0.3s; /* Added 'color' property to transition */
+   border-right: 4px solid transparent;
+ }
+ 
+ .sidebar div:hover {
+   background-color: #FFF4EE;
+   cursor: pointer;
+   border-right-color: #FD8648;
+   color: #FD8648; /* Set the color when hovering over the entire div */
+ }
+ .sidebar div:hover h2 {
+   color: #FD8648;
+ }
+
+  
+ .dashboard-link, .project-link,.task-link,.reports-link, .settings-link{
+    text-decoration: none;
+    color: inherit;
+ }
