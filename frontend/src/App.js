@@ -1,4 +1,5 @@
 
+import Create from "./component/create";
 import Projects from "./component/projects";
 import Sidebar  from "./component/sidebar";
 import Task from "./component/task";
@@ -15,7 +16,8 @@ function App() {
             <Routes>
                <Route path='/' element={<Sidebar />} />  
                <Route path='/project' element={<Projects />} />  
-               <Route path='/task' element={<Task />} /> 
+               <Route path='/task' element={<Task />} />
+               <Route path='/project/create' element={<Create />} /> 
             </Routes>         
         </BrowserRouter>      
     </div>

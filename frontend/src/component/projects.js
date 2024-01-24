@@ -2,36 +2,13 @@
 import Sidebar  from "./sidebar";
  
 import '../styles/project.css'
+import { Link } from "react-router-dom";
 
 
-function Projects() {
-    return (
-      <div className="projects-sidebar">        
-          
-          
-             <Sidebar   />
-  
-             
-      
-            <div className="project-content">
-                   
-                   <div className="header">
-                        <div className="project-search">
-                                <input type="text" placeholder="search"></input>
-                        </div>
 
-
-                        <div className="project-profile">
-                              
-                        </div>
-                   </div>
-
-                   <div className="users-project">                      
-                        <div className="create">
-                                    <h2>+</h2>
-                        </div>
-
-
+const Project =()=>{
+    return(
+        <>  
                         <div className="project">
 
                            <div className="img">
@@ -56,19 +33,61 @@ function Projects() {
                                     <p className="selectedCat">andriod</p>
                                 </div>
                            </div>
-
-                           <div className="people"> 
-
+                          <div className="people"> 
+                              
                            </div>
+              </div>
+        </>   
+    )
+};
 
-                           
 
+
+function Projects() {
+    return (
+      <div className="projects-sidebar">        
+          
+          
+             <Sidebar   />
+  
+             
+      
+            <div className="project-content">
+                   
+                   <div className="header">
+                        <div className="project-search">
+                                <input type="text" placeholder="search"></input>
+                        </div>
+
+
+                        <div className="project-profile">
+                              
                         </div>
                    </div>
+                   
+                   <div className="create">
+                       <Link to='/project/create' className="create-link"><h2>+</h2></Link> 
+                    </div> 
+                   <div className="users-project">   
+                  
+                     
 
-             </div>
+                   
 
-             
+                     <div className="users-project-scrollable ">
+                            <Project />
+                            <Project />
+                            <Project />
+                            <Project />
+                     </div> 
+                 
+
+                    
+
+                    
+                   </div>
+
+             </div>            
       </div>
     )
 

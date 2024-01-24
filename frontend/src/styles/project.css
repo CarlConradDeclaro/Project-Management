@@ -25,7 +25,7 @@
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color: #ffffff;
+    
    }
 
 
@@ -62,11 +62,12 @@
     color: white;
    }
    
+ 
 
    .users-project .project{
-    width: 250px;
+    width: 270px;
     height: auto;
-    background-color: aqua;
+    background-color: #ffffff;
     padding: 5px ;
     cursor: pointer;
     border-radius: 5px;
@@ -77,17 +78,25 @@
      margin-right: 10px;
      margin-top: 10px;
  
-    width: 230px;
+    width: 250px;
     height: 160px;
    }
-   .project .prjTitle{
-   
+    
+  .users-project .project {
+   margin: 10px;
    }
 
    .project p{
     word-wrap: break-word; 
     max-width: 100%;
     font-size: 15px;
+    color: gray;
+    padding-left: 10px;
+    padding-right: 10px;
+   }
+   .project .prjTitle{
+    padding-left: 10px;
+    padding-right: 10px;
    }
 
    .category {
@@ -111,3 +120,22 @@
 
  
   
+  .users-project-scrollable {
+    width: 320px;
+    max-height: 85%; /* Set the maximum height you want for the scrollable area */
+    overflow-y: auto;
+    }
+
+   .users-project-scrollable::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+  
+  .users-project-scrollable::-webkit-scrollbar-thumb {
+    background-color: #999; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+  }
+  
+  .create-link{
+    text-decoration: none;
+    color: inherit;
+  }
