@@ -1,7 +1,7 @@
 .sidebar {
    width: 15%;
-   min-height: 95vh;
-   background-color: #FFFFFF;
+   min-height:70vh;
+   background-color: #ffffff;
    margin: 10px;
    border-radius: 10px;
  }

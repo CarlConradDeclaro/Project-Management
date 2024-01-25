@@ -64,9 +64,7 @@ function Projects() {
           
           
              <Sidebar   />
-  
-             
-      
+                
             <div className="project-content">
                    
                    <div className="header">
@@ -86,24 +84,14 @@ function Projects() {
 
                     
                    <div className="users-project">   
-                  
-                     
-
-                   
-
-                   <div className="users-project-scrollable">
-                    {/* reversing the project so the newly created one will be display at the top */}
-                     {projectData.slice().reverse().map((data) => (
-                        <Project key={data.id} title={data.projectTitle} description={data.description} />
-                    ))}
-                    </div>
-                 
-
-                    
-
-                    
-                   </div>
-
+                            <div className="users-project-scrollable">
+                                {
+                                projectData.slice().reverse().map((data) => (
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} />
+                                ))
+                                }
+                            </div>
+                  </div>
              </div>            
       </div>
     )
