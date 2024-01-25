@@ -8,8 +8,9 @@ import '../styles/sidebar.css'
 function Sidebar() {
   return (
     <div className="sidebar">      
+            
              <div className='dashboard'>
-                 <h2><Link to='/create' className='dashboard-link'>Dashboard</Link></h2>
+                 <Link to='/create' className='dashboard-link'><h2>Dashboard</h2></Link>              
              </div>
             
              <div className='project'>

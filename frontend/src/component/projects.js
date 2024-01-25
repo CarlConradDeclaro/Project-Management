@@ -64,7 +64,7 @@ function Projects() {
           
           
              <Sidebar   />
-                
+
             <div className="project-content">
                    
                    <div className="header">
@@ -77,10 +77,10 @@ function Projects() {
                               
                         </div>
                    </div>
-                   
+                    
                    <div className="create">
                        <Link to='/project/create' className="create-link"><h2>+</h2></Link> 
-                    </div> 
+                    </div>
 
                     
                    <div className="users-project">   
