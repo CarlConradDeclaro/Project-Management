@@ -3,10 +3,11 @@ import Sidebar  from "./sidebar";
  
 import '../styles/project.css'
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+ 
 
-
-
-const Project =()=>{
+const Project =(props)=>{
     return(
         <>  
                         <div className="project">
@@ -16,12 +17,12 @@ const Project =()=>{
                            </div>
 
                            <div className="prjTitle">
-                                    <h2>TItle</h2>
+                                    <h2>{props.title}</h2>
                            </div>
 
                            <div className="description">
                                     <p>
-                                        lloresfjsdfsdfsfdfgggdggffgdgfdfdfsdfsdfdsfdfgdghgjknfgjknfgjkfdgjkfdgdgg   
+                                     {props.description}
                                      </p>
                            </div>
 
@@ -44,6 +45,20 @@ const Project =()=>{
 
 
 function Projects() {
+
+
+    const [projectData,setProjectData] = useState([]);
+
+
+    useEffect(()=>{
+        axios.get("http://localhost:3000/")
+        .then(res => setProjectData(res.data))
+        .catch(err => console.log(err))
+    },[])
+
+
+
+
     return (
       <div className="projects-sidebar">        
           
@@ -68,18 +83,20 @@ function Projects() {
                    <div className="create">
                        <Link to='/project/create' className="create-link"><h2>+</h2></Link> 
                     </div> 
+
+                    
                    <div className="users-project">   
                   
                      
 
                    
 
-                     <div className="users-project-scrollable ">
-                            <Project />
-                            <Project />
-                            <Project />
-                            <Project />
-                     </div> 
+                   <div className="users-project-scrollable">
+                    {/* reversing the project so the newly created one will be display at the top */}
+                     {projectData.slice().reverse().map((data) => (
+                        <Project key={data.id} title={data.projectTitle} description={data.description} />
+                    ))}
+                    </div>
                  
 
                     
