@@ -23,9 +23,7 @@
 
    .project-content .users-project{
     max-width: 99%;
-    min-height: 75% ;
-    margin: 10px;
-    padding: 10px;
+    min-height: 75% ; 
     border-radius: 10px;
    }
 
@@ -47,10 +45,11 @@
      background-color: #F7F6F4;
    }
 
-   .users-project .create{
+    .create{
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    margin-right: 10px;
    }
    .create h2{
     background-color: orangered;
@@ -64,7 +63,6 @@
    }
    
  
-
    .users-project .project{
     width: 270px;
     height: auto;
@@ -139,4 +137,10 @@
   .create-link{
     text-decoration: none;
     color: inherit;
+  }
+
+  .users-project-header h2{
+    font-size: 15px;
+    color: #999;
+    margin-left: 15px;
   }

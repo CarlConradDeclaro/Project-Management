@@ -51,7 +51,7 @@ function Projects() {
 
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/")
+        axios.get("http://localhost:8000/")
         .then(res => setProjectData(res.data))
         .catch(err => console.log(err))
     },[])
@@ -83,12 +83,16 @@ function Projects() {
                     </div>
 
                     
-                   <div className="users-project">   
+                   <div className="users-project">  
+                      <div className="users-project-header">
+                        <h2>Working   (10)</h2>
+                      </div> 
+
                             <div className="users-project-scrollable">
                                 {
-                                projectData.slice().reverse().map((data) => (
+                                  projectData.slice().reverse().map((data)=>(
                                     <Project key={data.id} title={data.projectTitle} description={data.description} />
-                                ))
+                                  ))
                                 }
                             </div>
                   </div>
