@@ -26,8 +26,6 @@ function Create() {
                   <form  onSubmit={handlSubmit}>
                   
                     <div className='project-datas'>
-
-
                    
 
                     <div className='inputsFields1'>
