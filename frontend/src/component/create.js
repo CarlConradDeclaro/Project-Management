@@ -7,8 +7,8 @@ import '../styles/create.css'
 function Create() {
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
-  const [file,setFile] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null);
+  const [file,setFile] = useState()
+  const [imagePreview, setImagePreview] = useState();
   const navigate = useNavigate()
 
 
@@ -18,7 +18,10 @@ function Create() {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    formData.append('file', file);
+    if (file) {
+      formData.append('file', file);
+    }
+
 
     axios.post("http://localhost:8000/create", formData)
         .then(res => {
@@ -65,7 +68,7 @@ function Create() {
                     </div>
 
                     <div  className='inputsFields2'>
-                           <input type="file"  onChange={Preview}  required/ >
+                           <input type="file"  onChange={Preview}   / >
 
                             <div className='project-photo'> 
                             <img src={imagePreview}  />
