@@ -5,6 +5,7 @@ import '../styles/project.css'
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
  
 
 const Project =(props)=>{
@@ -13,7 +14,7 @@ const Project =(props)=>{
                         <div className="project">
 
                            <div className="img">
-                               <img src="../nft.jpg" alt="picture"/>
+                           <img src={`http://localhost:8000/images/${props.img}`} alt="Project" />
                            </div>
 
                            <div className="prjTitle">
@@ -91,7 +92,7 @@ function Projects() {
                             <div className="users-project-scrollable">
                                 {
                                   projectData.slice().reverse().map((data)=>(
-                                    <Project key={data.id} title={data.projectTitle} description={data.description} />
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
                                   ))
                                 }
                             </div>

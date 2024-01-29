@@ -29,10 +29,27 @@
  }
 
  .inputsFields2{
+   display: flex;
+    
+   align-items: center;
     flex-direction: column;
      background-color: #ffffff;
      box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
      border-radius: 10px;
      width: 25%;
      padding: 20px;
+}
+.project-photo{
+   display: flex;
+   justify-content: center;
+    margin: 20px;
+   width: 80%;
+   height: 150px;
+   border: 1px dashed black;
+   
+}
+
+.project-photo img{
+    width: 100%;
+   height: 150px;
 }
