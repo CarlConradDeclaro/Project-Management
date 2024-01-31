@@ -9,6 +9,7 @@ function Create() {
   const [description,setDescription] = useState("")
   const [file,setFile] = useState()
   const [imagePreview, setImagePreview] = useState();
+  const [status,setStatus]=useState("");
   const navigate = useNavigate()
 
 
@@ -18,9 +19,8 @@ function Create() {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    if (file) {
-      formData.append('file', file);
-    }
+    formData.append('status',status)
+    formData.append('file', file);
 
 
     axios.post("http://localhost:8000/create", formData)
@@ -64,7 +64,13 @@ function Create() {
                            <textarea className='desc' name="desc" placeholder="Description" required
                            onChange={e => setDescription(e.target.value)}  
                            ></textarea>
-                           
+
+                           <select onChange={e => setStatus(e.target.value)}>
+                              <option value="">Select a Status</option>
+                              <option value="working">Working</option>
+                              <option value="inprogress">In Progress</option>
+                              <option value="completed">Completed</option>
+                            </select> 
                     </div>
 
                     <div  className='inputsFields2'>

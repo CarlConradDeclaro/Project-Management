@@ -47,7 +47,6 @@ const Project =(props)=>{
 
 function Projects() {
 
-
     const [projectData,setProjectData] = useState([]);
 
 
@@ -91,17 +90,19 @@ function Projects() {
 
                             <div className="users-project-scrollable">
                                 {
-                                  projectData.slice().reverse().map((data)=>(
+                                  projectData.filter(data=> data.status === "working").slice().reverse().map((data)=>(
                                     <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
                                   ))
                                 }
                             </div>
+
+                            
+
+                            
                   </div>
              </div>            
       </div>
     )
-
     }
-
 
     export default Projects;

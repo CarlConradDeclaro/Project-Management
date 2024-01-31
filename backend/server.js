@@ -49,13 +49,14 @@ app.get('/', (req, res) => {
 });
 
 app.post('/create', upload.single('file'), (req, res) => {
-    const sqlQuery = "INSERT INTO project (projectTitle, description, image) VALUES (?, ?, ?)";
+    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status) VALUES (?, ?, ?,?)";
     const values = [
         req.body.title,
         req.body.description,
-        req.file.filename
+        req.file.filename,
+        req.body.status
     ];
-
+    
     db.query(sqlQuery, values, (err, data) => {
         if (err) {
             console.error('Error inserting data into database:', err);
