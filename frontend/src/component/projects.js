@@ -48,6 +48,11 @@ const Project =(props)=>{
 function Projects() {
 
     const [projectData,setProjectData] = useState([]);
+    const number_working = projectData.filter(data => data.status === "working").length;
+    const number_progress = projectData.filter(data => data.status === "inprogress").length;
+    const number_completed = projectData.filter(data => data.status === "completed").length;
+
+    
 
 
     useEffect(()=>{
@@ -55,7 +60,6 @@ function Projects() {
         .then(res => setProjectData(res.data))
         .catch(err => console.log(err))
     },[])
-
 
 
 
@@ -89,11 +93,14 @@ function Projects() {
                             <div className="users-project-working">
 
                                   <div className="users-project-header-working">
-                                     <h2>Working   (10)</h2>
+                                 
+
+                                     <h2>Working   ({number_working} )</h2>
                                  </div> 
                                 {
                                   projectData.filter(data=> data.status === "working").slice().reverse().map((data)=>(
                                     <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                  
                                   ))
                                 }
                             </div>
@@ -101,7 +108,7 @@ function Projects() {
 
                             <div className="users-project-progress">
                                 <div className="users-project-header-progress">
-                                        <h2>In progress   (1)</h2>
+                                        <h2>In progress   ({number_progress})</h2>
                                     </div> 
 
                                     {
@@ -113,12 +120,13 @@ function Projects() {
 
                             <div className="users-project-completed">
                                 <div className="users-project-header-completed">
-                                        <h2>Completed   (1)</h2>
+                                        <h2>Completed   ({number_completed})</h2>
                                     </div> 
 
                                     {
                                   projectData.filter(data=> data.status === "completed").slice().reverse().map((data)=>(
                                     <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                    
                                   ))
                                 }
                             </div>
