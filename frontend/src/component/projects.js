@@ -84,13 +84,40 @@ function Projects() {
 
                     
                    <div className="users-project">  
-                      <div className="users-project-header">
-                        <h2>Working   (10)</h2>
-                      </div> 
+                    
 
-                            <div className="users-project-scrollable">
+                            <div className="users-project-working">
+
+                                  <div className="users-project-header-working">
+                                     <h2>Working   (10)</h2>
+                                 </div> 
                                 {
                                   projectData.filter(data=> data.status === "working").slice().reverse().map((data)=>(
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                  ))
+                                }
+                            </div>
+
+
+                            <div className="users-project-progress">
+                                <div className="users-project-header-progress">
+                                        <h2>In progress   (1)</h2>
+                                    </div> 
+
+                                    {
+                                  projectData.filter(data=> data.status === "inprogress").slice().reverse().map((data)=>(
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                  ))
+                                }
+                            </div>
+
+                            <div className="users-project-completed">
+                                <div className="users-project-header-completed">
+                                        <h2>Completed   (1)</h2>
+                                    </div> 
+
+                                    {
+                                  projectData.filter(data=> data.status === "completed").slice().reverse().map((data)=>(
                                     <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
                                   ))
                                 }

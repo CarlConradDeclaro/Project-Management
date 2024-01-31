@@ -62,9 +62,14 @@
     color: white;
    }
    
- 
+   .users-project{
+    display: flex;
+    justify-content: space-between;
+    gap:50px;
+   }
    .users-project .project{
     width: 270px;
+    margin: 10px;
     height: auto;
     background-color: #ffffff;
     padding: 5px ;
@@ -82,9 +87,7 @@
     height: 160px;
    }
     
-  .users-project .project {
-   margin: 10px;
-   }
+  
 
    .project p{
     word-wrap: break-word; 
@@ -120,28 +123,30 @@
 
  
   
-  .users-project-scrollable {
+  .users-project-working, .users-project-progress  ,.users-project-completed{
     width: 320px;
     height:100vh; /* Set the maximum height you want for the scrollable area */
     overflow-y: auto;
     }
 
-   .users-project-scrollable::-webkit-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
+   .users-project-working::-webkit-scrollbar ,.users-project-progress::-webkit-scrollbar ,.users-project-completed::-webkit-scrollbar{
+    width: 6px; /* Set the width of the scrollbar */
   }
   
-  .users-project-scrollable::-webkit-scrollbar-thumb {
+  .users-project-working::-webkit-scrollbar-thumb ,.users-project-progress::-webkit-scrollbar-thumb  , .users-project-completed::-webkit-scrollbar-thumb {
     background-color: #999; /* Set the color of the scrollbar thumb */
     border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
   }
-  
-  .create-link{
-    text-decoration: none;
-    color: inherit;
-  }
 
-  .users-project-header h2{
+
+  .users-project-working h2 ,  .users-project-progress h2 ,.users-project-header-completed h2 {
     font-size: 15px;
     color: #999;
     margin-left: 15px;
+  }
+
+
+  .create-link{
+    text-decoration: none;
+    color: inherit;
   }
