@@ -15,7 +15,6 @@ const Project =(props)=>{
   const tagsArray =JSON.parse(props.tags) 
 
  
-  
    
     return(
         <>  
