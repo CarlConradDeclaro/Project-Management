@@ -12,6 +12,10 @@ function Create() {
   const [status,setStatus]=useState("");
   const navigate = useNavigate()
 
+  const [tags,setTags] = useState([])
+ 
+
+
 
   function handlSubmit(event) {
     event.preventDefault();
@@ -31,7 +35,7 @@ function Create() {
         .catch(err => console.log(err));
 }
 
-
+ 
    function Preview(event){
       const pic = event.target.files[0];
       setFile(pic);
@@ -45,6 +49,20 @@ function Create() {
       reader.readAsDataURL(pic)
    }
 
+   function handleKeyDwon(e){
+          if(e.key !== 'Enter') return
+          const val = e.target.value
+          if(!val.trim()) return
+          setTags([...tags,val])
+          e.target.value=''
+   }
+   function removeTag(index){
+     setTags(tags.filter((el,i)=> i !== index))
+     
+   }
+   
+  
+     const numtags = tags.length
 
     return (
       <div className="create-projects">    
@@ -65,7 +83,7 @@ function Create() {
                            onChange={e => setDescription(e.target.value)}  
                            ></textarea>
 
-                           <select onChange={e => setStatus(e.target.value)}>
+                           <select onChange={e => setStatus(e.target.value)} className='status'>
                               <option value="">Select a Status</option>
                               <option value="working">Working</option>
                               <option value="inprogress">In Progress</option>
@@ -74,11 +92,35 @@ function Create() {
                     </div>
 
                     <div  className='inputsFields2'>
-                           <input type="file"  onChange={Preview}   / >
+                              <input type="file"  onChange={Preview}   / >
+                              <div className='project-photo'> 
+                                     <img src={imagePreview}  />
+                              </div>
 
-                            <div className='project-photo'> 
-                            <img src={imagePreview}  />
-                            </div>
+                              <h3>Enter some tags ({numtags}/2) </h3>
+                              <div className='tags'>
+                                    
+                                    {
+                                      tags.map((tag,index)=>(
+                                        <div className="tag-item" key={index}>
+                                          <span className='text'>{tag}</span>
+                                          <span className='close'onClick={()=> removeTag(index)} >&times;</span>
+                                       </div>
+                                      ))
+                                    }
+                                    {
+                                      tags.length<2 &&(
+                                      <input type='texts' 
+                                      className='tags-input'
+                                       placeholder='Type something'
+                                      onKeyDown={handleKeyDwon}
+                                      /> 
+                                      )}
+                                    
+                                    
+                                      
+
+                              </div>
                     </div>
 
                     </div>

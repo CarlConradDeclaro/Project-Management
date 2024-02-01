@@ -48,6 +48,9 @@ const Project =(props)=>{
 function Projects() {
 
     const [projectData,setProjectData] = useState([]);
+
+
+    
     const number_working = projectData.filter(data => data.status === "working").length;
     const number_progress = projectData.filter(data => data.status === "inprogress").length;
     const number_completed = projectData.filter(data => data.status === "completed").length;
@@ -129,11 +132,7 @@ function Projects() {
                                     
                                   ))
                                 }
-                            </div>
-
-                            
-
-                            
+                            </div>                          
                   </div>
              </div>            
       </div>

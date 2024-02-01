@@ -53,3 +53,57 @@
     width: 100%;
    height: 150px;
 }
+
+.status {
+   width: 120px;
+   height: 30px;
+   margin-left: 10px;
+  
+}
+
+.status option {
+   cursor: pointer; /* Set cursor to pointer */
+   font-size: 17px; /* Adjust font size as needed */
+ }
+ 
+ 
+ .tags{
+    border: solid 2px gray;
+    border-radius: 10px;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5em;
+ }
+
+ .tag-item{
+   background-color: #686868;
+   display: inline-block;
+   padding: .5em .75em;
+   border-radius: 20px;
+   margin: 5px;
+   color: #ffffff;
+ }
+
+ .tag-item .close{
+   height: 20px;
+   width: 20px;
+   background-color: gray;
+   
+   color: whitesmoke;
+   border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  margin-left: .5em;
+  cursor: pointer;
+ }
+
+ .tags-input{
+flex-grow: 1;
+padding: .5em 0;
+border: none;
+outline: none;
+ }
