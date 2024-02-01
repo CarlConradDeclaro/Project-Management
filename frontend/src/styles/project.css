@@ -102,13 +102,13 @@
     padding-right: 10px;
    }
 
-   .category {
+   .project-tags {
     display: flex;
     margin: 10px;
     
   }
   
-  .category div {
+  .project-tags div {
     display: flex;
     justify-content: center;
     align-items: center;

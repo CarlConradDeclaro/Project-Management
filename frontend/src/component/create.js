@@ -25,6 +25,7 @@ function Create() {
     formData.append('description', description);
     formData.append('status',status)
     formData.append('file', file);
+    formData.append('tags', JSON.stringify(tags));
 
 
     axios.post("http://localhost:8000/create", formData)
@@ -83,7 +84,7 @@ function Create() {
                            onChange={e => setDescription(e.target.value)}  
                            ></textarea>
 
-                           <select onChange={e => setStatus(e.target.value)} className='status'>
+                           <select onChange={e => setStatus(e.target.value)} className='status' required>
                               <option value="">Select a Status</option>
                               <option value="working">Working</option>
                               <option value="inprogress">In Progress</option>
@@ -114,6 +115,7 @@ function Create() {
                                       className='tags-input'
                                        placeholder='Type something'
                                       onKeyDown={handleKeyDwon}
+                                      required
                                       /> 
                                       )}
                                     

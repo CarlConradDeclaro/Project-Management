@@ -9,6 +9,14 @@ import axios from "axios";
  
 
 const Project =(props)=>{
+ 
+
+ 
+  const tagsArray =JSON.parse(props.tags) 
+
+ 
+  
+   
     return(
         <>  
                         <div className="project">
@@ -27,13 +35,17 @@ const Project =(props)=>{
                                      </p>
                            </div>
 
-                           <div className="category"> 
-                                <div className="cat1">
-                                    <p className="selectedCat">website</p>
-                                </div>
-                                <div className="cat2">
-                                    <p className="selectedCat">andriod</p>
-                                </div>
+                           <div className="project-tags"> 
+                               
+                               
+
+                           {tagsArray.map((tag, index) => (
+                        <div key={index} className="tag">
+                            <p className="selectedCat">{tag}</p>
+                        </div>
+                    ))}
+
+                                      
                            </div>
                           <div className="people"> 
                               
@@ -48,7 +60,7 @@ const Project =(props)=>{
 function Projects() {
 
     const [projectData,setProjectData] = useState([]);
-
+     
 
     
     const number_working = projectData.filter(data => data.status === "working").length;
@@ -102,10 +114,13 @@ function Projects() {
                                  </div> 
                                 {
                                   projectData.filter(data=> data.status === "working").slice().reverse().map((data)=>(
-                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
-                                  
+                                   
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
+                                    
                                   ))
+                                  
                                 }
+                              
                             </div>
 
 
@@ -116,7 +131,7 @@ function Projects() {
 
                                     {
                                   projectData.filter(data=> data.status === "inprogress").slice().reverse().map((data)=>(
-                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                   ))
                                 }
                             </div>
@@ -128,7 +143,7 @@ function Projects() {
 
                                     {
                                   projectData.filter(data=> data.status === "completed").slice().reverse().map((data)=>(
-                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image} />
+                                    <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                     
                                   ))
                                 }
