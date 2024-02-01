@@ -5,15 +5,23 @@ import '../styles/project.css'
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+ 
  
 
 const Project =(props)=>{
  
 
  
-  const tagsArray =JSON.parse(props.tags) 
+  const tagsArray = JSON.parse(props.tags);
 
+// tagsArray.forEach(tagString => {
+//     const individualTags = tagString.split(','); // Assuming each element is comma-separated
+//     individualTags.forEach(tag => {
+//         console.log(tag);
+//     });
+// });
+
+ 
  
    
     return(
@@ -39,10 +47,10 @@ const Project =(props)=>{
                                
 
                            {tagsArray.map((tag, index) => (
-                        <div key={index} className="tag">
-                            <p className="selectedCat">{tag}</p>
-                        </div>
-                    ))}
+                                <div key={index} className="tag">
+                                    <p className="selectedCat">{tag}</p>
+                                </div>
+                            ))}
 
                                       
                            </div>

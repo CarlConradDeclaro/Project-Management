@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 const multer = require('multer');
-
+ 
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'))
@@ -55,7 +55,7 @@ app.post('/create', upload.single('file'), (req, res) => {
         req.body.description,
         req.file.filename,
         req.body.status,
-       req.body.tags
+        req.body.tags
     ];
     
     db.query(sqlQuery, values, (err, data) => {
