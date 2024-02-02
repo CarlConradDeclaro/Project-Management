@@ -37,8 +37,31 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+
+
+
 app.get('/', (req, res) => {
-    const sql = "SELECT * FROM project";
+   
+});
+
+app.post('/SignIn', (req, res) => {
+    const sql = "INSERT INTO users (name, password) VALUES (?, ?)";
+    const values = [
+        req.body.name,
+        req.body.password
+    ];
+
+    db.query(sql, values, (err, data) => {
+        if (err) {
+            console.error('Error inserting data into database:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ success: true });
+    });
+});
+
+app.get('/login',(req,res)=>{
+    const sql = "SELECT * FROM users";
     db.query(sql, (err, data) => {
         if (err) {
             console.error('Error querying database:', err);
@@ -46,7 +69,9 @@ app.get('/', (req, res) => {
         }
         res.json(data);
     });
-});
+})
+
+ 
 
 app.post('/create', upload.single('file'), (req, res) => {
     const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags) VALUES (?, ?,?, ?,?)";
@@ -68,8 +93,21 @@ app.post('/create', upload.single('file'), (req, res) => {
 });
 
 app.get('/project', (req, res) => {
-    res.json({ status: 'ok' });
+    const sql = "SELECT * FROM project";
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error('Error querying database:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(data);
+    });
 });
+
+
+
+
+ 
+
 
 app.listen('8000', () => {
     console.log("Listening on port 8000");

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/create.css'
 
 
@@ -67,7 +67,7 @@ function Create() {
 
     return (
       <div className="create-projects">    
-              
+              <Link  to='/project' ><h3>Back</h3></Link>
               <h2> Create a new Product</h2>
                   <form  onSubmit={handlSubmit}>
                   
@@ -118,10 +118,6 @@ function Create() {
                                       required
                                       /> 
                                       )}
-                                    
-                                    
-                                      
-
                               </div>
                     </div>
 

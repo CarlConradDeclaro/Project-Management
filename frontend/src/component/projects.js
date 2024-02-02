@@ -5,7 +5,8 @@ import '../styles/project.css'
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
- 
+import { useLocation } from "react-router-dom";
+
  
 
 const Project =(props)=>{
@@ -14,15 +15,7 @@ const Project =(props)=>{
  
   const tagsArray = JSON.parse(props.tags);
 
-// tagsArray.forEach(tagString => {
-//     const individualTags = tagString.split(','); // Assuming each element is comma-separated
-//     individualTags.forEach(tag => {
-//         console.log(tag);
-//     });
-// });
-
-
- 
+  
  
    
     return(
@@ -76,10 +69,11 @@ function Projects() {
     const number_completed = projectData.filter(data => data.status === "completed").length;
 
     
-
+    const location = useLocation();
+    const { userAcc, userPass } = location.state;
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/")
+        axios.get("http://localhost:8000/project")
         .then(res => setProjectData(res.data))
         .catch(err => console.log(err))
     },[])
@@ -89,9 +83,11 @@ function Projects() {
     return (
       <div className="projects-sidebar">        
           
-          
-             <Sidebar   />
-
+        {userAcc != null ? (
+        <>
+               <Sidebar   />
+             <h2>{userAcc}</h2>
+             
             <div className="project-content">
                    
                    <div className="header">
@@ -157,7 +153,11 @@ function Projects() {
                                 }
                             </div>                          
                   </div>
-             </div>            
+                  </div>    
+        </>
+    ) : null}
+          
+                   
       </div>
     )
     }
