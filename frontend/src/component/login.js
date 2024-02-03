@@ -6,34 +6,44 @@ import { Link,useNavigate } from "react-router-dom";
 
 function Login() {
 
-  const [account,getAccount] = useState([]);
+  //const [account,getAccount] = useState([]);
 
-  const [userAcc,setAcc] = useState("")
-  const [userPass,setUserPass] = useState("")
+  const [name,setAcc] = useState("")
+  const [password,setUserPass] = useState("")
 
   const navigate = useNavigate()
 
    
 
 
-    useEffect(()=>{
-        axios.get("http://localhost:8000/login")
-        .then(res => getAccount(res.data))
-        .catch(err => console.log(err))
-    },[])
+    // useEffect(()=>{
+    //     axios.get("http://localhost:8000/login")
+    //     .then(res => getAccount(res.data))
+    //     .catch(err => console.log(err))
+    // },[])
 
 
     
-
+    axios.defaults.withCredentials = true;
     function handleLogIn(e){
         e.preventDefault();
-         const aunthenticationUser = account.find(account => account.name === userAcc && account.password === userPass)
-        if(aunthenticationUser){
-        navigate("/project", { state: { userAcc, userPass } });
-        console.log("Login Succesfully");
-        }else
-        console.log("Invalid username or password");
-        }
+        //  const aunthenticationUser = account.find(account => account.name === userAcc && account.password === userPass)
+        // if(aunthenticationUser){
+        // navigate("/project");
+        // console.log("Login Succesfully");
+        // }else
+        // console.log("Invalid username or password");
+
+        axios.post("http://localhost:8000/login",{ name: name, password: password })
+        .then(res=>{
+            if(res.data.Status === "Success"){
+                navigate('/project')
+                }else{
+                    alert("Error")
+                }
+        }).then(err => console.log(err))
+      
+    }
 
 
 

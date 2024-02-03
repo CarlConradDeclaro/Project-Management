@@ -1,10 +1,22 @@
 
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css'
+import axios from 'axios';
+import { useLocation , useNavigate} from 'react-router-dom';
 
 
  
 function Sidebar() {
+const location  = useLocation()
+const navigate = useNavigate()
+     const handleDelete=()=>{
+        axios.get('http://localhost:8000/logout')
+        .then(res =>{
+          
+           navigate('/login')
+        }).catch(err => console.log(err))
+     }
+
   return (
     <div className="sidebar">      
             
@@ -26,6 +38,9 @@ function Sidebar() {
 
             <div className='settings'>
                  <h2><Link to='/settings' className='settings-link'>Settings</Link></h2>
+            </div>
+            <div className='logOut'>
+                 <button onClick={handleDelete}>Logout</button>
             </div>
             
     </div>
