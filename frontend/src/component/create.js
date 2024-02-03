@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/create.css'
 
@@ -14,13 +14,26 @@ function Create() {
 
   const [tags,setTags] = useState([])
  
+  const [id,setId] = useState("")
 
 
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    axios.get('http://localhost:8000')
+      .then(res => {
+        if (res.data.Status === "Success") { 
+          setId(res.data.id);
+          console.log(res.data.id + " from create"); // Log the name from the response data
+        }
+      })
+      .catch(err => console.log(err)); // Add error handling here
+  }, []); 
 
   function handlSubmit(event) {
     event.preventDefault();
     
     const formData = new FormData();
+    formData.append('id', id);
     formData.append('title', title);
     formData.append('description', description);
     formData.append('status',status)
@@ -34,6 +47,10 @@ function Create() {
             navigate("/project");
         })
         .catch(err => console.log(err));
+
+
+
+       
 }
 
  

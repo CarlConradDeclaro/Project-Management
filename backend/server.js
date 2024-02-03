@@ -50,13 +50,14 @@ const upload = multer({ storage });
 const verifyUser=(req,res,next)=>{
     const token = req.cookies.TOKEN
     if(!token){
-        return res.json({Error:"You not authenticated"})
+        return res.json({Error:"Your not authenticated"})
     }else{
         jwt.verify(token,"jwt-secret-key",(err,decoded)=>{
             if(err){
                 return res.json({Error: "Token is not okey"})
             }else{
                 req.name = decoded.name
+                req.id = decoded.id;
                 next();
             }
         })
@@ -65,7 +66,7 @@ const verifyUser=(req,res,next)=>{
 
 
 app.get('/', verifyUser,(req, res) => {
-     return res.json({Status : "Success"})
+     return res.json({Status : "Success" , name:req.name,  id: req.id})
 });
 
 app.post('/SignIn', (req, res) => {
@@ -84,48 +85,71 @@ app.post('/SignIn', (req, res) => {
             res.json({ success: true });
         });
     })
-   
 
-   
 });
 
-app.post('/login',(req,res)=>{
-    const sql = "SELECT * FROM users WHERE name = ?";
-    db.query(sql,[req.body.name] , (err,data) => {
-        if (err)     
-            return res.status(500).json({ error: 'Internal Server Error' });
-        if(data.length > 0){
-            bcrypt.compare(req.body.password.toString(), data[0].password, (err,response)=>{
-                if(err) return res.json({Error: "Pasword hash error"})
-                if(response){
-                    const NAME =data[0].name;
-                    const TOKEN = jwt.sign({NAME},"jwt-secret-key",{expiresIn:  '1d'})
-                    res.cookie('TOKEN',TOKEN)
-                    return res.json({Status: "Success"})
-                }else{
-                    return res.json({Error: "Password not matched"})
-                }
-            })
-        }else{
-            return res.json({Error: "No email existed"})
-        }
+
+// app.post('/login',(req,res)=>{
+//     const sql = "SELECT * FROM users WHERE name = ?";
+//     db.query(sql,[req.body.name] , (err,data) => {
+//         if (err)     
+//             return res.json({ error: 'Internal Server Error' });
+//         if(data.length > 0){
+//             bcrypt.compare(req.body.password.toString(), data[0].password, (err,response)=>{
+//                 if(err) return res.json({Error: "Pasword hash error"})
+//                 if(response){
+//                     const NAME =data[0].name;
+//                     const TOKEN = jwt.sign({NAME},"jwt-secret-key",{expiresIn:  '1d'})
+//                     res.cookie('TOKEN',TOKEN)
+//                     return res.json({Status: "Success"})
+//                 }else{
+//                     return res.json({Error: "Password not matched"})
+//                 }
+//             })
+//         }else{
+//             return res.json({Error: "No email existed"})
+//         }
          
+//     });
+// })
+
+app.post('/login', (req, res) => {
+    const { name, password } = req.body;
+    const sql = "SELECT id, name, password FROM users WHERE name = ?";
+    db.query(sql, [name], (err, data) => {
+        if (err || data.length === 0) {
+            return res.json({ Error: "Invalid credentials" });
+        }
+
+        const user = data[0];
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (err || !result) {
+                return res.json({ Error: "Invalid credentials" });
+            }
+
+            const token = jwt.sign({ id: user.id, name: user.name }, "jwt-secret-key", { expiresIn: '1d' });
+            // res.cookie('TOKEN', token, { httpOnly: true });
+            res.cookie('TOKEN', token);
+            return res.json({ Status: "Success", id: user.id, name: user.name });
+        });
     });
-})
+});
 
 
- 
+
+
+
 
 app.post('/create', upload.single('file'), (req, res) => {
-    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags) VALUES (?, ?,?, ?,?)";
+    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags,owner) VALUES (?, ?,?, ?,?,?)";
     const values = [
         req.body.title,
         req.body.description,
         req.file.filename,
         req.body.status,
-        req.body.tags
-    ];
-    
+        req.body.tags,
+        req.body.id
+    ];    
     db.query(sqlQuery, values, (err, data) => {
         if (err) {
             console.error('Error inserting data into database:', err);
@@ -134,6 +158,7 @@ app.post('/create', upload.single('file'), (req, res) => {
         res.json({ success: true });
     });
 });
+
 
 app.get('/project', (req, res) => {
     const sql = "SELECT * FROM project";
@@ -151,9 +176,6 @@ app.get('/logout',(req,res)=>{
     res.clearCookie('TOKEN')
     return res.json({Status: "Success"})
 })
-
-
- 
 
 
 app.listen('8000', () => {

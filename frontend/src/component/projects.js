@@ -1,4 +1,3 @@
-
 import Sidebar  from "./sidebar";
  
 import '../styles/project.css'
@@ -6,18 +5,12 @@ import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
  
 
 const Project =(props)=>{
- 
 
- 
   const tagsArray = JSON.parse(props.tags);
 
-  
- 
-   
     return(
         <>  
                         <div className="project">
@@ -50,7 +43,7 @@ const Project =(props)=>{
                            </div>
                           <div className="people"> 
                               
-                           </div>
+                          </div>
               </div>
         </>   
     )
@@ -63,15 +56,16 @@ function Projects() {
     const [projectData,setProjectData] = useState([]);
      
 
-    
-    const number_working = projectData.filter(data => data.status === "working").length;
-    const number_progress = projectData.filter(data => data.status === "inprogress").length;
-    const number_completed = projectData.filter(data => data.status === "completed").length;
+    const [auth,setAuth] = useState(false)
+    const [name,setName] =useState("")
+    const [userId,setUserId] = useState('')
+    const number_working = projectData.filter(data => data.status === "working" && data.owner === userId).length;
+    const number_progress = projectData.filter(data => data.status === "inprogress"  && data.owner === userId).length;
+    const number_completed = projectData.filter(data => data.status === "completed" && data.owner === userId).length;
 
     
      
-    const navigate = useNavigate()
-    useEffect(()=>{
+     useEffect(()=>{
         axios.get("http://localhost:8000/project")
         .then(res => setProjectData(res.data))
         .catch(err => console.log(err))
@@ -79,41 +73,45 @@ function Projects() {
     },[])
 
    
-    const [auth,setAuth] = useState(false)
-    const [message,setMessge] = useState("")
+    
+ 
     axios.defaults.withCredentials = true;
-
-
-    axios.defaults.withCredentials = true;
-
-    useEffect(()=>{
+    useEffect(() => {
       axios.get('http://localhost:8000')
-      .then(res=>{
-           if(res.data.Status === "Success"){
-            setAuth(true)
-            
-           }else{
-            setAuth(false)
-            setMessge(res.data.Error)
-           }
-      })
-      .then(err => console.log(err))
-    },[])
+        .then(res => {
+          if (res.data.Status === "Success") {
+            setAuth(true);
+            setUserId(res.data.id);
+            setName(res.data.name)
+            console.log(res.data.id + " from project"); // Log the name from the response data
+          } else {
+            setAuth(false);
+          }
+        })
+        .catch(err => console.log(err)); // Add error handling here
+    }, []);
+    
+    
+
+
+
+  
+
 
     return (
       <div className="projects-sidebar">        
           
         {
-          auth ?  
+          auth &&(
           <>
           <Sidebar   />
             
              
-          <div className="project-content">
-                 
+          <div className="project-content">                
                  <div className="header">
                       <div className="project-search">
                               <input type="text" placeholder="search"></input>
+                              <h3>{name}</h3>
                       </div>
 
 
@@ -128,9 +126,7 @@ function Projects() {
 
                   
                  <div className="users-project">  
-                  
-
-                          <div className="users-project-working">
+                   <div className="users-project-working">
 
                                 <div className="users-project-header-working">
                                
@@ -138,7 +134,7 @@ function Projects() {
                                    <h2>Working   ({number_working} )</h2>
                                </div> 
                               {
-                                projectData.filter(data=> data.status === "working").slice().reverse().map((data)=>(
+                                projectData.filter(data=> data.status === "working" && data.owner === userId).slice().reverse().map((data)=>(
                                  
                                   <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
                                   
@@ -155,7 +151,7 @@ function Projects() {
                                   </div> 
 
                                   {
-                                projectData.filter(data=> data.status === "inprogress").slice().reverse().map((data)=>(
+                                projectData.filter(data=> data.status === "inprogress" && data.owner === userId).slice().reverse().map((data)=>(
                                   <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                 ))
                               }
@@ -167,7 +163,7 @@ function Projects() {
                                   </div> 
 
                                   {
-                                projectData.filter(data=> data.status === "completed").slice().reverse().map((data)=>(
+                                projectData.filter(data=> data.status === "completed" && data.owner === userId).slice().reverse().map((data)=>(
                                   <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                   
                                 ))
@@ -176,18 +172,8 @@ function Projects() {
                 </div>
                 </div>    
                 </>
-                :
-                <div>
-                      <h3>{message}</h3>
-                     <Link to='/login'> <h3>Login Now</h3></Link>
-                </div>
-
-         
-        }
-              
-    
-          
-                   
+          )           
+        }              
       </div>
     )
     }

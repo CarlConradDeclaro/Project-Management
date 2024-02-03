@@ -10,10 +10,13 @@ function Login() {
 
   const [name,setAcc] = useState("")
   const [password,setUserPass] = useState("")
+  
+
+
 
   const navigate = useNavigate()
-
-   
+  
+  
 
 
     // useEffect(()=>{
@@ -37,7 +40,9 @@ function Login() {
         axios.post("http://localhost:8000/login",{ name: name, password: password })
         .then(res=>{
             if(res.data.Status === "Success"){
-                navigate('/project')
+                const userId = res.data.id; // Access the user ID from the response data
+                navigate('/project');
+                console.log("User ID:", userId);
                 }else{
                     alert("Error")
                 }
@@ -45,7 +50,7 @@ function Login() {
       
     }
 
-
+    
 
     return (
       <div className="projects">    
@@ -70,6 +75,5 @@ function Login() {
         </div>
     )
     }
-
-
-    export default Login;
+ 
+    export default Login ;
