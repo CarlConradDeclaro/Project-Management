@@ -1,6 +1,6 @@
 import axios from "axios";
 import {  useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 
 
 
@@ -9,10 +9,10 @@ function SignIn() {
     const [name,setName] = useState("")
     const [password,setPassword] = useState("")
 
-
+    const navigate = useNavigate()
     function handleSignIn(e) {
         e.preventDefault();
-    
+        
         const formData = {
             name: name,
             password: password
@@ -21,6 +21,9 @@ function SignIn() {
             .then(res => {
                 setName('');
                 setPassword('');
+                if(res.data.success === true){
+                navigate('/login')
+                }
             })
             .catch(err => console.log(err));
     }
