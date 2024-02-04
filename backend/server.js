@@ -141,23 +141,38 @@ app.post('/login', (req, res) => {
 
 
 app.post('/create', upload.single('file'), (req, res) => {
-    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags,owner) VALUES (?, ?,?, ?,?,?)";
+    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags,owner,members) VALUES (?, ?,?, ?,?,?,?)";
     const values = [
         req.body.title,
         req.body.description,
         req.file.filename,
         req.body.status,
         req.body.tags,
-        req.body.id
+        req.body.id,
+        req.body.members
     ];    
     db.query(sqlQuery, values, (err, data) => {
         if (err) {
             console.error('Error inserting data into database:', err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.json({ success: true });
+        res.json({success: true});
     });
 });
+
+
+app.get('/create/users', (req, res) => {
+    const sql = "SELECT * FROM users";
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error('Error querying database:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(data);
+    });
+});
+
+
 
 
 app.get('/project', (req, res) => {

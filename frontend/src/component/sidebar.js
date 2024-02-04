@@ -5,14 +5,13 @@ import axios from 'axios';
 import { useLocation , useNavigate} from 'react-router-dom';
 
 
- 
+
 function Sidebar() {
 const location  = useLocation()
 const navigate = useNavigate()
      const handleDelete=()=>{
         axios.get('http://localhost:8000/logout')
-        .then(res =>{
-          
+        .then(res =>{        
            navigate('/login')
         }).catch(err => console.log(err))
      }
