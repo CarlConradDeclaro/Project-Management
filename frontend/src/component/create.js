@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate ,useParams } from 'react-router-dom';
 import '../styles/create.css'
 
 
@@ -18,8 +18,9 @@ function Create() {
   const [name,setName] = useState("")
   const [id,setId] = useState("")
   const [quantity, setQuantity] = useState(0);
-
  
+
+
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
@@ -39,7 +40,8 @@ function Create() {
       .then(res => setUsers(res.data))
       .catch(err => console.log(err))   
   },[])
-  
+
+ 
 
   function handlSubmit(event) {
     event.preventDefault();
@@ -59,9 +61,6 @@ function Create() {
             navigate("/project");
         })
         .catch(err => console.log(err));
-
-   
-   
      
 }
 
@@ -124,10 +123,10 @@ function Create() {
   
      const numtags = tags.length
 
-    return (
+     return (
       <div className="create-projects">    
               <Link  to='/project' ><h3>Back</h3></Link>
-              <h2> Create a new Product</h2>
+              <h2> Create a new Product  </h2>
                   <form  onSubmit={handlSubmit}>
                   
                     <div className='project-datas'>

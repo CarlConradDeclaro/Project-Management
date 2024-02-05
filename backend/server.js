@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST","GET"],
+    methods: ["POST","GET","PUT"],
     credentials: true
 }));
 app.use(express.static('public'))
@@ -192,6 +192,8 @@ app.get('/logout',(req,res)=>{
     return res.json({Status: "Success"})
 })
 
+
+ 
 
 app.listen('8000', () => {
     console.log("Listening on port 8000");
