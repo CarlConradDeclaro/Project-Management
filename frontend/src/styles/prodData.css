@@ -50,7 +50,7 @@
 }
 .prodData-Task th:first-child,
 .prodData-Task td:first-child {
-    width: 60%; /* Adjust the width as needed */
+    width: 50%; /* Adjust the width as needed */
 }
 .prodData-Task table,
 .prodData-Task td,
@@ -75,7 +75,12 @@
     height: 50px;
     margin: 0;
 }
-.tast-Assign input{
+.task-Status select{
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+.task-Assign input{
     width: 100%;
     height: 50px;
     margin: 0;
@@ -85,4 +90,8 @@
     height: 50px;
     margin: 0;
     font-size: 15px;
+}
+
+.task-Btn {
+    text-align: center;  
 }
