@@ -1,6 +1,7 @@
 
 import Create from "./component/create";
 import Login from "./component/login";
+import ProductData from "./component/prodData";
 import Projects from "./component/projects";
 import Sidebar  from "./component/sidebar";
 import SignIn from "./component/signIn";
@@ -20,7 +21,8 @@ function App() {
                <Route path='/login' element={<Login />} />
                <Route path='/project' element={<Projects />} />  
                <Route path='/task' element={<Task />} />            
-               <Route path='/project/create' element={<Create />} /> 
+               <Route path='/project/create/' element={<Create />} /> 
+               <Route path='/project/:id' element={<ProductData />} /> 
                 
             </Routes>         
         </BrowserRouter>      

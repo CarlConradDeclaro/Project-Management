@@ -9,11 +9,18 @@ import { useLocation } from "react-router-dom";
 
 const Project =(props)=>{
 
-  const tagsArray = JSON.parse(props.tags);
+  const navigate = useNavigate()
+const tagsArray = JSON.parse(props.tags);
+
+function handleProjectClick() {
+    navigate(`/project/${props.id}`);
+}
+
+   
 
     return(
         <>  
-                        <div className="project">
+                        <div className="project" onClick={handleProjectClick}>
 
                            <div className="img">
                            <img src={`http://localhost:8000/images/${props.img}`} alt="Project" />
@@ -136,7 +143,7 @@ function Projects() {
                               {
                                 projectData.filter(data=> data.status === "working" && data.owner === userId).slice().reverse().map((data)=>(
                                  
-                                  <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
+                                  <Project key={data.id} id={data.id} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
                                   
                                 ))
                                 

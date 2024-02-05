@@ -1,0 +1,97 @@
+.prodData-container{
+    display: flex;
+     
+   
+}
+
+.prodData-content{
+    width: 85%;
+    height: auto;
+    margin: 9px;
+    
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.prodData-header{
+    padding: 0px 30px 0px 30px;
+}
+
+.prodData-header .prodData-Details{
+    font-size: 14px;
+    color: grey;
+}
+.prodData-create{
+    display: flex;
+    justify-content: end;
+    margin: 0px 30px 0px 0px;
+}
+.prodData-create button{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.prodData-Task{
+    margin: 30px;
+    width: auto;
+    height: auto;
+    background-color: bisque;
+}
+.prodData-Task table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+   
+}
+.prodData-Task th:first-child,
+.prodData-Task td:first-child {
+    width: 50%; /* Adjust the width as needed */
+}
+.prodData-Task table,
+.prodData-Task td,
+.prodData-Task th {
+    border: 1px solid;
+    padding: 10px;
+}
+ 
+
+.prodData-Task td:nth-child(2){
+    text-align: center;
+}
+
+.prodData-Task td:nth-child(3){
+    text-align: center;
+}
+
+ 
+
+ .task-details textarea{
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+.task-Status select{
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+.task-Assign input{
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+.task-DueDate input{
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    font-size: 15px;
+}
+
+.task-Btn {
+    text-align: center;  
+}
