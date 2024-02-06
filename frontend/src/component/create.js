@@ -180,9 +180,7 @@ function Create() {
                                         onKeyDown={handleKeyDwonMem}
                                         required
                                         /> 
-                                      )
-                                    
-                                     
+                                      )       
                                       }
                               </div>
                     </div>

@@ -39,9 +39,9 @@
 .prodData-Task{
     margin: 30px;
     width: auto;
-    height: auto;
-    background-color: bisque;
-}
+    height: 60vh;
+    overflow-x: auto;
+ }
 .prodData-Task table{
     width: 100%;
     border-collapse: collapse;
@@ -55,8 +55,7 @@
 .prodData-Task table,
 .prodData-Task td,
 .prodData-Task th {
-    border: 1px solid;
-    padding: 10px;
+     padding: 10px;
 }
  
 
@@ -64,7 +63,7 @@
     text-align: center;
 }
 
-.prodData-Task td:nth-child(3){
+.prodData-Task td:nth-child(3).prodData-Task td:nth-child(4){
     text-align: center;
 }
 
@@ -95,3 +94,39 @@
 .task-Btn {
     text-align: center;  
 }
+.details-cell {
+     max-width: 200px; /* Example max-width, adjust as needed */
+     overflow-y: auto;  
+     cursor: pointer;
+}
+.details-cell::-webkit-scrollbar {
+     height: 8px;
+      
+}
+.details-cell::-webkit-scrollbar-thumb{
+    background-color: #cfcccc; /* Set the color of the scrollbar thumb */
+    border-radius: 5px;
+}
+.task-Btn button {
+    margin-right: 5px;
+}
+
+
+.assign-user-profile div{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+   
+}
+
+.assign-user-profile img{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.prodData-status p{
+    background-color: #FFF7E6;
+    border-radius: 10px;
+    color: orange;
+  }
