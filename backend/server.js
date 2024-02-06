@@ -112,6 +112,7 @@ app.post('/SignIn', (req, res) => {
 //     });
 // })
 
+
 app.post('/login', (req, res) => {
     const { name, password } = req.body;
     const sql = "SELECT id, name, password FROM users WHERE name = ?";
@@ -133,9 +134,6 @@ app.post('/login', (req, res) => {
         });
     });
 });
-
-
-
 
 
 
@@ -191,8 +189,41 @@ app.get('/logout',(req,res)=>{
     return res.json({Status: "Success"})
 })
 
-
+app.post('/create-task',(req,res)=>{
+    
+    const sql = "INSERT INTO task (projId,details,assign,status,dueDate) VALUES (?,?,?,?,?)"
  
+    const values = [
+        req.body.id,
+        req.body.details,
+        req.body.assign,
+        req.body.status,
+        req.body.dueDate
+       
+    ];
+   
+
+    db.query(sql, values, (err, data) => {
+        if (err) {
+            console.error('Error inserting data into database:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json({ success: true });
+    });
+})
+ 
+app.get('/getTask', (req, res) => {
+    const {prodId} =  req.body
+    const sql = "SELECT * FROM task";
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error('Error querying database:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(data);
+    });
+});
+
 
 app.listen('8000', () => {
     console.log("Listening on port 8000");

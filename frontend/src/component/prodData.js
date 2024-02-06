@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom'
 import Sidebar  from "./sidebar";
 import '../styles/prodData.css'
+import axios from 'axios';
 
 
  
@@ -17,38 +18,79 @@ function ProductData(){
     const [taskStatus, setTaskStatus] = useState('working');
     const [taskDueDate, setTaskDueDate] = useState('');
 
-  
-    useEffect(()=>{
+    const [users,setUsers] = useState([])
+    const [members,setMembers] = useState([])
+    const [task,setTask] =useState([])
+ 
+     useEffect(()=>{
         setProdId(id);
     })
 
 
-    const [rowCount, setRowCount] = useState(0);
-    const [create,setCreate] = useState(false)
+     const [create,setCreate] = useState(false)
 
     const createTask = () => {
              setCreate(true)
     };
 
     const handleSave = () => {
-        // Prepare the task data object
-        const taskData = {
+         const taskData = {
+            id: prodId,
             details: taskDetails,
             assign: taskAssign,
             status: taskStatus,
             dueDate: taskDueDate
         };
 
-       console.log(taskData.details);
+        axios.post("http://localhost:8000/create-task", taskData)
+        .then(res => {        
+            console.log(res.data);
+        })
+        .catch(err => console.log(err));
+
+     
          // Reset form fields
         setTaskDetails('');
-        setTaskAssign('');
-        setTaskStatus('working');
+         setTaskStatus('working');
         setTaskDueDate('');
         setCreate(false)
-    };
+        setMembers([])
+      };
 
+
+    useEffect(()=>{
+        axios.get("http://localhost:8000/create/users")
+        .then(res => setUsers(res.data))
+        .catch(err => console.log(err))
+    })
+
+    useEffect(()=>{
+        axios.get("http://localhost:8000/getTask")
+        .then(res => setTask(res.data))
+        .catch(err => console.log(err))
+    })
+  
+
+    function handleKeyDownAssign(e){
+        if(e.key !== 'Enter') return
+        const val = users.find(u => u.name === e.target.value)
+        if(val  ){
+              if(!members.includes(val.name)){
+                setMembers([...members,val.name])
+                setTaskAssign(val.name)
+                console.log('User '+e.target.value + ' Found!');
+              }else
+              console.log('User '+e.target.value + ' already added!');
+                     
+        }else{
+          console.log('User '+e.target.value + ' not Found!');
+        }   
+        e.target.value=''
+    }
  
+    function removeMem(index){
+        setMembers(members.filter((el,i)=> i !== index))     
+    }
      
     return(
         <div className='prodData-container'>
@@ -91,13 +133,31 @@ function ProductData(){
                                                 <textarea    type='text' 
                                                     value={taskDetails}
                                                     onChange={(e) => setTaskDetails(e.target.value)}
+                                                    placeholder='255 words only'
                                                 />  
                                             </td>                 
                                             <td className='task-Assign'>
-                                                <input 
-                                                    value={taskAssign}
-                                                    onChange={(e) => setTaskAssign(e.target.value)}
-                                                />
+
+                                              {
+                                                members.map((tag,index)=>(
+                                                    <div className="tag-member" key={index}>
+                                                    <span className='text'>{tag}</span>
+                                                    <span className='close'onClick={()=> removeMem(index)} >&times;</span>
+                                                </div>
+                                                ))
+                                                }
+                                            {
+                                               
+                                               members.length < 1 && (
+                                                <input type='texts' 
+                                                className='tags-inputMem'
+                                                 placeholder='Type Members'
+                                                onKeyDown={ handleKeyDownAssign}
+                                                required
+                                                /> 
+                                              )  
+    
+                                              }
                                             </td>      
                                             <td className='task-Status'>
                                                 <select 
@@ -119,17 +179,35 @@ function ProductData(){
                                             </td>  
                                    </>
                                     : <></>
-                                }                                                
-                                    <tr>
-                                        <td>sda</td>
-                                        <td>sda</td>
-                                        <td>sda</td>
-                                        <td>sda</td>
-                                        <td colSpan="2" className='task-Btn' >
-                                            <button onClick={e => setCreate(false)}>Edit</button>
-                                            <button onClick={e => setCreate(false)}>Delete</button>
-                                        </td>  
-                                    </tr> 
+                                }   
+                                                                             
+                                  
+                                        {
+                                            
+                                              task.filter(data => data.projId === parseInt(prodId)).slice().reverse().map((data) => (
+                                                <tr key={data.id}> 
+                                                    <td className="details-cell">{data.details}</td>
+                                                    <td  className='assign-user-profile'>
+                                                        <div>
+                                                            {data.assign}
+                                                            <div>
+                                                        <img src={`http://localhost:8000/images/nft.jpg`}  alt="Project" />
+
+                                                        </div>
+                                                        </div>
+                                                       
+
+                                                    </td>
+                                                    <td className='prodData-status'><p>{data.status}</p></td>                                   
+                                                    <td>{data.dueDate.split('T')[0]}</td>
+                                                    <td colSpan="2" className='task-Btn'>
+                                                        <button onClick={e => setCreate(false)}>Edit</button>
+                                                        <button onClick={e => setCreate(false)}>Delete</button>
+                                                    </td>  
+                                                </tr> 
+                                            ))
+                                        }
+                                      
                         </tbody>
             </table>
                               
