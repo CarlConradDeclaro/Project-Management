@@ -22,7 +22,7 @@ function App() {
                <Route path='/project' element={<Projects />} />  
                <Route path='/task' element={<Task />} />            
                <Route path='/project/create/' element={<Create />} /> 
-               <Route path='/project/:id' element={<ProductData />} /> 
+               <Route path='/project/:id/:owner' element={<ProductData />} /> 
                 
             </Routes>         
         </BrowserRouter>      
