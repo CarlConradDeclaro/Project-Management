@@ -1,156 +1,192 @@
+      
     
-  
-  .projects-sidebar {     
-    display: flex;
+    .projects-sidebar {     
+      display: flex;
+      
+    }
     
-   }
-  
-  .project-content {
-    width: 85%;
-    height: auto;
-    margin: 5px;
-    border-radius: 10px;
+    .project-content {
+      width: 85%;
+      height: auto;
+      margin: 5px;
+      border-radius: 10px;
+      }
+
+    .project-content .header{
+      max-width: 100%;
+      height: 50px;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+
     }
 
-   .project-content .header{
-    max-width: 99%;
-    height: 50px;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #ffffff;
-   }
-
-   .project-content .users-project{
-    max-width: 99%;
-    min-height: 75% ; 
-    border-radius: 10px;
-   }
-
-
-   .header{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-   }
-
-   .project-search input{
-     width: 250px;
-     height: 30px;
-     padding: 5px;
-     border-radius: 8px;
-     outline: none;
-     border: none;
-     font-size: 18px;
-     background-color: #F7F6F4;
-   }
-
-    .create{
-    display: flex;
-    justify-content: flex-end;
-    cursor: pointer;
-    margin-right: 10px;
-   }
-   .create h2{
-    background-color: orangered;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    color: white;
-   }
-   
-   .users-project{
-    display: flex;
-    justify-content: space-between;
-    gap:50px;
-   }
-   .users-project .project{
-    width: 270px;
-    margin: 10px;
-    height: auto;
-    background-color: #ffffff;
-    padding: 5px ;
-    cursor: pointer;
-    border-radius: 5px;
-   
-   }
-   .users-project .project:hover{
-  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
-    
-    
-}
-   .project img{
-     margin-left: 10px;
-     margin-right: 10px;
-     margin-top: 10px;
- 
-    width: 250px;
-    height: 160px;
-   }
-    
-  
-
-   .project p{
-    word-wrap: break-word; 
-    max-width: 100%;
-    font-size: 15px;
-    color: gray;
-    padding-left: 10px;
-    padding-right: 10px;
-   }
-   .project .prjTitle{
-    padding-left: 10px;
-    padding-right: 10px;
-   }
-
-   .project-tags {
-    display: flex;
-    margin: 10px;
-    
-  }
-  
-  .project-tags div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: orange;
-    width: 80px;
-    height: 30px;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 5px;
-  }
-  
-
- 
-  
-  .users-project-working, .users-project-progress  ,.users-project-completed{
-    width: 320px;
-    height:100vh; /* Set the maximum height you want for the scrollable area */
-    overflow-y: auto;
+    .project-content .users-project{
+      max-width: 99%;
+      min-height: 75% ; 
+      border-radius: 10px;
     }
 
-   .users-project-working::-webkit-scrollbar ,.users-project-progress::-webkit-scrollbar ,.users-project-completed::-webkit-scrollbar{
-    width: 6px; /* Set the width of the scrollbar */
+
+    .header{
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+    }
+
+    .project-search input{
+      width: 250px;
+      height: 30px;
+      padding: 5px;
+      border-radius: 8px;
+      outline: none;
+      border: none;
+      font-size: 18px;
+      background-color: #F7F6F4;
+    }
+
+      .create{
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .create h2{
+      background-color: orangered;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      color: white;
+    }
+    
+    .users-project{
+      display: flex;
+      justify-content: space-between;
+      gap:50px;
+    }
+    .users-project .project{
+      width: 270px;
+      margin: 10px;
+      height: auto;
+      background-color: #ffffff;
+      padding: 5px ;
+      cursor: pointer;
+      border-radius: 5px;
+    
+    }
+    .users-project .project:hover{
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+      
+      
   }
+    .project img{
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 10px;
   
-  .users-project-working::-webkit-scrollbar-thumb ,.users-project-progress::-webkit-scrollbar-thumb  , .users-project-completed::-webkit-scrollbar-thumb {
-    background-color: #999; /* Set the color of the scrollbar thumb */
-    border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+      width: 250px;
+      height: 160px;
+    }
+      
+    
+
+    .project p{
+      word-wrap: break-word; 
+      max-width: 100%;
+      font-size: 15px;
+      color: gray;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .project .prjTitle{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .project-tags {
+      display: flex;
+      margin: 10px;
+      
+    }
+    
+    .project-tags div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: orange;
+      width: 80px;
+      height: 30px;
+      margin-right: 10px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    
+
+  
+    
+    .users-project-working, .users-project-progress  ,.users-project-completed{
+      width: 320px;
+      height:75vh; /* Set the maximum height you want for the scrollable area */
+      overflow-y: auto;
+      }
+
+    .users-project-working::-webkit-scrollbar ,.users-project-progress::-webkit-scrollbar ,.users-project-completed::-webkit-scrollbar{
+      width: 6px; /* Set the width of the scrollbar */
+    }
+    
+    .users-project-working::-webkit-scrollbar-thumb ,.users-project-progress::-webkit-scrollbar-thumb  , .users-project-completed::-webkit-scrollbar-thumb {
+      background-color: #999; /* Set the color of the scrollbar thumb */
+      border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+    }
+
+
+    .users-project-working h2 ,  .users-project-progress h2 ,.users-project-header-completed h2 {
+      font-size: 15px;
+      color: #999;
+      margin-left: 15px;
+    }
+
+    .create-link{
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+  .project-profile{
+    display: flex;
+    gap: 10px;
+     
   }
-
-
-  .users-project-working h2 ,  .users-project-progress h2 ,.users-project-header-completed h2 {
-    font-size: 15px;
-    color: #999;
-    margin-left: 15px;
-  }
-
-
-  .create-link{
-    text-decoration: none;
-    color: inherit;
-  }
+    .profile{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #999;
+      cursor: pointer;
+    }
+    .noti{
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     }
+    .noti img{
+      display: flex;
+     
+     width: 40px;
+     height: 40px;
+   }
+    .profile img{
+       display: flex;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }

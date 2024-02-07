@@ -13,7 +13,7 @@ const Project =(props)=>{
 const tagsArray = JSON.parse(props.tags);
 
 function handleProjectClick() {
-    navigate(`/project/${props.id}`);
+    navigate(`/project/${props.id}/${props.owner}`);
 }
 
    
@@ -66,9 +66,9 @@ function Projects() {
     const [auth,setAuth] = useState(false)
     const [name,setName] =useState("")
     const [userId,setUserId] = useState('')
-    const number_working = projectData.filter(data => data.status === "working" && data.owner === userId).length;
-    const number_progress = projectData.filter(data => data.status === "inprogress"  && data.owner === userId).length;
-    const number_completed = projectData.filter(data => data.status === "completed" && data.owner === userId).length;
+    const number_working = projectData.filter(data => data.status === "working" && data.owner === userId ||  data.members.includes(name)).length;
+    const number_progress = projectData.filter(data => data.status === "inprogress"  && data.owner === userId||  data.members.includes(name)).length;
+    const number_completed = projectData.filter(data => data.status === "completed" && data.owner === userId ||  data.members.includes(name)).length;
 
     
      
@@ -115,18 +115,28 @@ function Projects() {
             
              
           <div className="project-content">                
+               
+
                  <div className="header">
                       <div className="project-search">
-                              <input type="text" placeholder="search"></input>
-                              <h3>{name}</h3>
+                              <input type="text" placeholder="search"></input>                
                       </div>
 
 
                       <div className="project-profile">
-                            
+                                 <div className="noti">
+                                 <img src="../noti.png"  />
+                                 </div>
+                                 
+                                 <div className="profile">
+                                        <img src="../nft.jpg"  />
+                                 </div>
                       </div>
                  </div>
                   
+
+
+
                  <div className="create">
                      <Link to='/project/create' className="create-link"><h2>+</h2></Link> 
                   </div>
@@ -141,9 +151,9 @@ function Projects() {
                                    <h2>Working   ({number_working} )</h2>
                                </div> 
                               {
-                                projectData.filter(data=> data.status === "working" && data.owner === userId).slice().reverse().map((data)=>(
+                                projectData.filter(data=> data.status === "working" && data.owner === userId ||  data.members.includes(name)).slice().reverse().map((data)=>(
                                  
-                                  <Project key={data.id} id={data.id} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
+                                  <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
                                   
                                 ))
                                 

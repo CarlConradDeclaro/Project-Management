@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
+import {useParams ,useLocation} from 'react-router-dom'
 import Sidebar  from "./sidebar";
 import '../styles/prodData.css'
 import axios from 'axios';
@@ -11,9 +11,17 @@ import axios from 'axios';
 
 function ProductData(){
   
-    const {id} = useParams()
+    
+    const {id,owner} = useParams()
     const [prodId,setProdId] = useState(null);
-    const [taskDetails, setTaskDetails] = useState('');
+    
+    const [prodOwner,setProdOwner] = useState(null);
+    const [user,setUser] =useState('')
+
+  
+    const location = useLocation()
+
+     const [taskDetails, setTaskDetails] = useState('');
     const [taskAssign, setTaskAssign] = useState('');
     const [taskStatus, setTaskStatus] = useState('working');
     const [taskDueDate, setTaskDueDate] = useState('');
@@ -24,7 +32,26 @@ function ProductData(){
  
      useEffect(()=>{
         setProdId(id);
+        setProdOwner(owner)
+
+        
     })
+
+    axios.defaults.withCredentials = true;
+    useEffect(() => {
+      axios.get('http://localhost:8000')
+        .then(res => {
+          if (res.data.Status === "Success") {    
+            setUser(res.data.id);
+           
+          }  
+        })
+        .catch(err => console.log(err)); // Add error handling here
+    }, []);
+
+
+
+
 
 
      const [create,setCreate] = useState(false)
@@ -106,6 +133,7 @@ function ProductData(){
                     console.error("Error deleting item:", error);
                     // Handle error cases, such as displaying an error message
                 });
+                
     };
     
     
@@ -114,7 +142,7 @@ function ProductData(){
      
     return(
         <div className='prodData-container'>
-             <Sidebar   />
+            <Sidebar/>
                <div  className='prodData-content'>
                         
 
@@ -130,7 +158,11 @@ function ProductData(){
 
 
                     <div className='prodData-create' onClick={createTask}>
-                            <button>+</button>
+                           {
+                             prodOwner == user ?  <button>+</button> : <></>
+                             
+                           }   
+                           
                     </div>
 
                     <div className='prodData-Task'>
@@ -142,7 +174,10 @@ function ProductData(){
                                     <th>Assign Name</th>   
                                     <th>Status</th>         
                                     <th>Due Date</th>
-                                    <th>Controls</th>
+                                    {
+                                        prodOwner == user ? <th>Controls</th> : <></>
+                                    }
+                                   
                               </tr>
                          </thead>
                                 <tbody>
@@ -220,10 +255,16 @@ function ProductData(){
                                                     </td>
                                                     <td className='prodData-status'><p>{data.status}</p></td>                                   
                                                     <td><p className='prodData-date'>{data.dueDate.split('T')[0]}</p></td>
+                                                   {
+                                                    prodOwner == user ? 
                                                     <td colSpan="2" className='task-Btn'>
-                                                        <button onClick={e => setCreate(false)}>Edit</button>
-                                                        <button onClick={() => handleDelete(data.id)}>Delete</button>
-                                                    </td>  
+                                                    <button onClick={e => setCreate(false)}>Edit</button>
+                                                    <button onClick={() => handleDelete(data.id)}>Delete</button>
+                                                   </td>  
+                                                    : 
+                                                    <></>
+                                                   }
+                                                   
                                                 </tr> 
                                             ))
                                         }

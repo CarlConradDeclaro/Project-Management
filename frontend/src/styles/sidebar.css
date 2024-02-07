@@ -1,38 +1,57 @@
 .sidebar {
    width: 15%;
-   min-height:90vh;
+   min-height:95vh;
    background-color: #ffffff;
    margin: 10px;
    border-radius: 10px;
+   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+
  }
  
+ 
+ .sidebar-username{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+ }
+
+
+ .sidebar-username .User h2{
+      font-size: 25px;
+      color: black;
+ }
+ .sidebar-oparation div{
+      display: flex;
+       align-items: center;
+   
+  } 
  
  .sidebar div h2 {
    font-size: 20px;
    color: #D1D1D3;
+   margin-left: 20px;
  }
  
- .sidebar div {
-   display: flex;
-   justify-content: center;
-   transition: background-color 0.3s, border-right 0.3s, color 0.3s; /* Added 'color' property to transition */
-   border-right: 4px solid transparent;
- }
- 
- .sidebar div:hover {
-   background-color: #FFF4EE;
-   cursor: pointer;
-   border-right-color: #FD8648;
-   color: #FD8648; /* Set the color when hovering over the entire div */
- }
- .sidebar div:hover h2 {
-   color: #FD8648;
- }
-
   
  .dashboard-link, .project-link,.task-link,.reports-link, .settings-link{
     text-decoration: none;
     color: inherit;
  }
-
+ .sidebar-oparation div {
+   
+   transition: background-color 0.3s, border-right 0.3s, color 0.3s; /* Added 'color' property to transition */
+   border-right: 4px solid transparent;
+ }
  
+ .sidebar-oparation  div:hover {
+   background-color: #FFF4EE;
+   cursor: pointer;
+   border-right-color: #FD8648;
+   color: #FD8648; /* Set the color when hovering over the entire div */
+ }
+ 
+
+
+  
+    
