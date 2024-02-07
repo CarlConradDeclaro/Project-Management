@@ -61,10 +61,15 @@
 
 .prodData-Task td:nth-child(2){
     text-align: center;
+    
+}     
+.prodData-Task td input,select{
+    border-radius: 10px;
+    outline: none;
+    width: 120px;
 }
-
 .prodData-Task td:nth-child(3).prodData-Task td:nth-child(4){
-    text-align: center;
+    text-align: center;   
 }
 
  
@@ -129,4 +134,11 @@
     background-color: #FFF7E6;
     border-radius: 10px;
     color: orange;
-  }
+     text-align: center;
+}
+.prodData-date{
+    text-align: center;
+    color: #b0aeae;
+}
+
+  

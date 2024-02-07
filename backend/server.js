@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST","GET","PUT"],
+    methods: ["POST","GET","PUT","DELETE"],
     credentials: true
 }));
 app.use(express.static('public'))
@@ -222,6 +222,22 @@ app.get('/getTask', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         res.json(data);
+    });
+});
+
+ 
+app.delete('/task/:id', (req, res) => {
+    const itemId = req.params.id;
+    const sql = "DELETE FROM task WHERE id = ?";
+    db.query(sql, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        res.json({ message: 'Item deleted successfully' });
     });
 });
 

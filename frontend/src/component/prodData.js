@@ -86,11 +86,31 @@ function ProductData(){
           console.log('User '+e.target.value + ' not Found!');
         }   
         e.target.value=''
+        
+    
+       
     }
  
     function removeMem(index){
         setMembers(members.filter((el,i)=> i !== index))     
     }
+
+
+    function handleDelete (id){
+            axios.delete(`http://localhost:8000/task/${id}`)
+                .then(response => {
+                    console.log("Item deleted successfully");
+                    // Perform any necessary UI updates
+                })
+                .catch(error => {
+                    console.error("Error deleting item:", error);
+                    // Handle error cases, such as displaying an error message
+                });
+    };
+    
+    
+     
+    
      
     return(
         <div className='prodData-container'>
@@ -123,7 +143,7 @@ function ProductData(){
                                     <th>Status</th>         
                                     <th>Due Date</th>
                                     <th>Controls</th>
-                                    </tr>
+                              </tr>
                          </thead>
                                 <tbody>
                                 {
@@ -199,10 +219,10 @@ function ProductData(){
 
                                                     </td>
                                                     <td className='prodData-status'><p>{data.status}</p></td>                                   
-                                                    <td>{data.dueDate.split('T')[0]}</td>
+                                                    <td><p className='prodData-date'>{data.dueDate.split('T')[0]}</p></td>
                                                     <td colSpan="2" className='task-Btn'>
                                                         <button onClick={e => setCreate(false)}>Edit</button>
-                                                        <button onClick={e => setCreate(false)}>Delete</button>
+                                                        <button onClick={() => handleDelete(data.id)}>Delete</button>
                                                     </td>  
                                                 </tr> 
                                             ))
