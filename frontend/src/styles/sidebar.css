@@ -30,7 +30,7 @@
  .sidebar div h2 {
    font-size: 20px;
    color: #D1D1D3;
-   margin-left: 20px;
+   margin-left: 10px;
  }
  
   
@@ -39,7 +39,7 @@
     color: inherit;
  }
  .sidebar-oparation div {
-   
+  
    transition: background-color 0.3s, border-right 0.3s, color 0.3s; /* Added 'color' property to transition */
    border-right: 4px solid transparent;
  }
@@ -51,7 +51,6 @@
    color: #FD8648; /* Set the color when hovering over the entire div */
  }
  
-
-
+ 
   
     

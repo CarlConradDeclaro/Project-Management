@@ -4,7 +4,7 @@ import {useParams ,useLocation} from 'react-router-dom'
 import Sidebar  from "./sidebar";
 import '../styles/prodData.css'
 import axios from 'axios';
-
+ 
 
  
 
@@ -142,7 +142,7 @@ function ProductData(){
      
     return(
         <div className='prodData-container'>
-            <Sidebar/>
+             <Sidebar   /> 
                <div  className='prodData-content'>
                         
 

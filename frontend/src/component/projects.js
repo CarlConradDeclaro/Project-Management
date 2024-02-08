@@ -1,4 +1,4 @@
-import Sidebar  from "./sidebar";
+import Bar  from "./sidebar";
  
 import '../styles/project.css'
 import { Link , useNavigate} from "react-router-dom";
@@ -111,8 +111,8 @@ function Projects() {
         {
           auth &&(
           <>
-          <Sidebar   />
-            
+        
+        <Bar img={'../dashboard.png'} /> 
              
           <div className="project-content">                
                
