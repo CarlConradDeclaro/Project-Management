@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
   
 
-const SidebarCom = (props)=>{
+const SidebarComp = (props)=>{
 
 
      const navigate = useNavigate()
@@ -115,7 +115,7 @@ function Sidebar() {
 
 
   return (
-      <SidebarCom  /> 
+      <SidebarComp  /> 
   );
 }
 

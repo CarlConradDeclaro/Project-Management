@@ -1,4 +1,4 @@
-import Bar  from "./sidebar";
+import Sidebar  from "./sidebar";
  
 import '../styles/project.css'
 import { Link , useNavigate} from "react-router-dom";
@@ -60,15 +60,18 @@ function handleProjectClick() {
 
 function Projects() {
 
+  const navigate = useNavigate()
+
     const [projectData,setProjectData] = useState([]);
      
 
     const [auth,setAuth] = useState(false)
     const [name,setName] =useState("")
     const [userId,setUserId] = useState('')
-    const number_working = projectData.filter(data => data.status === "working" && data.owner === userId ||  data.members.includes(name)).length;
-    const number_progress = projectData.filter(data => data.status === "inprogress"  && data.owner === userId||  data.members.includes(name)).length;
-    const number_completed = projectData.filter(data => data.status === "completed" && data.owner === userId ||  data.members.includes(name)).length;
+    
+    const number_working =  projectData.filter(data=> (data.status === "working") && (data.owner === userId || data.members.includes(name))).length
+    const number_progress = projectData.filter(data=> (data.status === "inprogress") && (data.owner === userId || data.members.includes(name))).length
+    const number_completed = projectData.filter(data=> (data.status === "completed") && (data.owner === userId || data.members.includes(name))).length
 
     
      
@@ -100,7 +103,9 @@ function Projects() {
     
     
 
-
+ function handleProfile(){
+   navigate('/profile')
+ }
 
   
 
@@ -111,8 +116,8 @@ function Projects() {
         {
           auth &&(
           <>
-        
-        <Bar img={'../dashboard.png'} /> 
+          <Sidebar   />
+            
              
           <div className="project-content">                
                
@@ -124,13 +129,23 @@ function Projects() {
 
 
                       <div className="project-profile">
-                                 <div className="noti">
-                                 <img src="../noti.png"  />
+                             
+                                 
+                                 <div className="profile" onClick={e => navigate('/profile')}>
+                                        <img src="../nft.jpg"  />
+                                        <div class="dropdown"  >
+                                           
+                                            <div class="dropdown-content">
+                                               <Link to="/profile">   Profile </Link>
+                                           
+                                               <Link>   Setting </Link>
+                                            
+                                            </div>
+                                          </div>
                                  </div>
                                  
-                                 <div className="profile">
-                                        <img src="../nft.jpg"  />
-                                 </div>
+                                
+                               
                       </div>
                  </div>
                   
@@ -151,7 +166,7 @@ function Projects() {
                                    <h2>Working   ({number_working} )</h2>
                                </div> 
                               {
-                                projectData.filter(data=> data.status === "working" && data.owner === userId ||  data.members.includes(name)).slice().reverse().map((data)=>(
+                                projectData.filter(data=> (data.status === "working") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
                                  
                                   <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}  tags={data.tags}/>
                                   
@@ -168,8 +183,8 @@ function Projects() {
                                   </div> 
 
                                   {
-                                projectData.filter(data=> data.status === "inprogress" && data.owner === userId).slice().reverse().map((data)=>(
-                                  <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
+                                projectData.filter(data=> (data.status === "inprogress") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
+                                  <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                 ))
                               }
                           </div>
@@ -180,8 +195,8 @@ function Projects() {
                                   </div> 
 
                                   {
-                                projectData.filter(data=> data.status === "completed" && data.owner === userId).slice().reverse().map((data)=>(
-                                  <Project key={data.id} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
+                                projectData.filter(data=> (data.status === "completed") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
+                                  <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                   
                                 ))
                               }

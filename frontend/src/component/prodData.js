@@ -15,8 +15,9 @@ function ProductData(){
     const {id,owner} = useParams()
     const [prodId,setProdId] = useState(null);
     
-    const [prodOwner,setProdOwner] = useState(null);
-    const [user,setUser] =useState('')
+    const [prodOwner,setProdOwner] = useState(null); // product owener id
+    const [user,setUser] =useState('') // userId
+    const [userName,setUserName] = useState('') // user name
 
   
     const location = useLocation()
@@ -43,7 +44,7 @@ function ProductData(){
         .then(res => {
           if (res.data.Status === "Success") {    
             setUser(res.data.id);
-           
+            setUserName(res.data.name)
           }  
         })
         .catch(err => console.log(err)); // Add error handling here
@@ -86,7 +87,7 @@ function ProductData(){
 
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/create/users")
+        axios.get("http://localhost:8000/project")
         .then(res => setUsers(res.data))
         .catch(err => console.log(err))
     })
@@ -99,16 +100,13 @@ function ProductData(){
   
 
     function handleKeyDownAssign(e){
+
         if(e.key !== 'Enter') return
-        const val = users.find(u => u.name === e.target.value)
-        if(val  ){
-              if(!members.includes(val.name)){
-                setMembers([...members,val.name])
-                setTaskAssign(val.name)
-                console.log('User '+e.target.value + ' Found!');
-              }else
-              console.log('User '+e.target.value + ' already added!');
-                     
+        const val = users.find(u => u.members.includes(e.target.value) )
+         if(val || userName == e.target.value){     
+                setMembers([...members,e.target.value])
+                setTaskAssign(e.target.value)
+                console.log('User '+e.target.value + ' Found!');                  
         }else{
           console.log('User '+e.target.value + ' not Found!');
         }   
@@ -148,7 +146,7 @@ function ProductData(){
 
                     <div className='prodData-header'>
                            <div className='prodData-title'>
-                               <h1 className='prodData-title'>Project Title {prodId}</h1>   
+                               <h1 className='prodData-title'>Project Title </h1>   
                            </div>
 
                            <div className='prodData-Details'>

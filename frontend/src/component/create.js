@@ -17,7 +17,7 @@ function Create() {
   const [users,setUsers] = useState([])
   const [name,setName] = useState("")
   const [id,setId] = useState("")
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
  
 
 

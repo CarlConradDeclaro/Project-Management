@@ -1,0 +1,74 @@
+
+.User-profile{
+    display: flex;
+}
+
+.profile-content{
+    display: flex;
+    
+   
+    width: 85%;  
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.profile-user-details{
+    margin-top: 100px;
+    display: flex;
+    width: 70%;
+    height: 50%;   
+ 
+}
+.profile-picture{
+    margin: 20px 0px 0px 100px;
+    width: 28%;
+    height: 65%;
+    border-radius: 50%;
+    background-color: grey;
+}
+.profile-picture img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+ 
+.edit-profile-pic button{
+    margin-top: 20px;
+}
+.profile-name{
+    display: inline-block;
+    width: 35%;
+ 
+    margin-left: 50px;
+   
+}
+.profile-name label{
+    font-size: 22px;
+}
+.profile-name input{
+    width: 100%;
+    display: block;
+    height: 50px;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+   
+}
+.profile-controls {
+    text-align: right;  
+}
+.profile-name button{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    margin: 20px 10px 0 0 ;
+    background-color: rgb(245, 191, 90);
+}
+
+.user-names h2{
+    border-bottom: 1px solid black;
+}
