@@ -141,4 +141,30 @@
     color: #b0aeae;
 }
 
-  
+  .prodData-title{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .prod-Delete img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .Proddelete{
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+  .Proddelete button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 30px;
+    font-size: 17px;
+  }
+  .prod-Delete:hover .Proddelete{
+    display: block;
+  }
