@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import {useParams ,useLocation} from 'react-router-dom'
+import {useParams ,useLocation, Link, Navigate, useNavigate} from 'react-router-dom'
 import Sidebar  from "./sidebar";
 import '../styles/prodData.css'
 import axios from 'axios';
@@ -11,13 +11,16 @@ import axios from 'axios';
 
 function ProductData(){
   
+    const navigate = useNavigate()
     
     const {id,owner} = useParams()
-    const [prodId,setProdId] = useState(null);
     
-    const [prodOwner,setProdOwner] = useState(null);
-    const [user,setUser] =useState('')
-
+    const [prodId,setProdId] = useState(null); // project id 
+    
+    const [prodOwner,setProdOwner] = useState(null); // project owener id
+    const [user,setUser] =useState('') // userId
+    const [userName,setUserName] = useState('') // user name
+ 
   
     const location = useLocation()
 
@@ -26,14 +29,15 @@ function ProductData(){
     const [taskStatus, setTaskStatus] = useState('working');
     const [taskDueDate, setTaskDueDate] = useState('');
 
-    const [users,setUsers] = useState([])
-    const [members,setMembers] = useState([])
+     const [members,setMembers] = useState([])
     const [task,setTask] =useState([])
- 
+
+    const [project,setProject] = useState([])
+  
      useEffect(()=>{
         setProdId(id);
         setProdOwner(owner)
-
+       
         
     })
 
@@ -43,8 +47,8 @@ function ProductData(){
         .then(res => {
           if (res.data.Status === "Success") {    
             setUser(res.data.id);
-           
-          }  
+            setUserName(res.data.name)
+           }  
         })
         .catch(err => console.log(err)); // Add error handling here
     }, []);
@@ -85,11 +89,16 @@ function ProductData(){
       };
 
 
+   
+
     useEffect(()=>{
-        axios.get("http://localhost:8000/create/users")
-        .then(res => setUsers(res.data))
+        axios.get("http://localhost:8000/project")
+        .then(res => 
+            setProject(res.data)   
+            )
         .catch(err => console.log(err))
     })
+
 
     useEffect(()=>{
         axios.get("http://localhost:8000/getTask")
@@ -99,16 +108,13 @@ function ProductData(){
   
 
     function handleKeyDownAssign(e){
+
         if(e.key !== 'Enter') return
-        const val = users.find(u => u.name === e.target.value)
-        if(val  ){
-              if(!members.includes(val.name)){
-                setMembers([...members,val.name])
-                setTaskAssign(val.name)
-                console.log('User '+e.target.value + ' Found!');
-              }else
-              console.log('User '+e.target.value + ' already added!');
-                     
+        const val = project.find(u => u.members.includes(e.target.value) )
+         if(val || userName == e.target.value){     
+                setMembers([...members,e.target.value])
+                setTaskAssign(e.target.value)
+                console.log('User '+e.target.value + ' Found!');                  
         }else{
           console.log('User '+e.target.value + ' not Found!');
         }   
@@ -136,10 +142,23 @@ function ProductData(){
                 
     };
     
-    
-     
-    
-     
+    const  numTask = task.filter( t =>(t.projId == prodId)).length
+    const prodDetails = project.filter(project => project.id == prodId);
+    const projectTitles = prodDetails.map(project => project.projectTitle);
+    const projectDetails = prodDetails.map(project => project.description);
+      
+
+    function handleDeleteProj(){
+          
+        axios.delete(`http://localhost:8000/project-delete/${prodId}`)
+        .then(res =>{
+                console.log("Project deleted");
+                navigate('/project')
+        }).catch(err => console.log(err))
+
+       
+    }
+
     return(
         <div className='prodData-container'>
              <Sidebar   /> 
@@ -147,19 +166,30 @@ function ProductData(){
                         
 
                     <div className='prodData-header'>
+
                            <div className='prodData-title'>
-                               <h1 className='prodData-title'>Project Title {prodId}</h1>   
+                                <div className='prodTitle'>
+                                        <h1 className='prodData-title'>{projectTitles}  </h1>   
+                                </div>
+
+                                <div className='prod-Delete'>
+                                        <img src={`http://localhost:8000/images/dots.png`} /> 
+                                        <div class="Proddelete">
+                                                <button onClick={handleDeleteProj}>Delete</button>        
+                                        </div>
+                                </div>
+
                            </div>
 
                            <div className='prodData-Details'>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur illum eligendi, laudantium omnis nemo ratione est velit vitae optio earum eos eum! A dolores minus autem aperiam eveniet. Placeat, voluptatibus? ipsum dolor sit amet consectetur adipisicing elit. Pariatur illum eligendi, laudantium omnis nemo ratione est velit vitae optio earum eos eum!ipsum dolor sit amet consectetur adipisicing elit. Pariatur illum eligendi, laudantium omnis nemo ratione est velit vitae optio earum eos eum! A dolores minus autem aperiam eveniet. Placeat, voluptatibus? A dolores minus autem aperiam eveniet. Placeat, voluptatibus?</p>          
-                           </div>
+                                    <p>{projectDetails}</p>
+                            </div>
                     </div>
 
 
-                    <div className='prodData-create' onClick={createTask}>
+                    <div className='prodData-create' >
                            {
-                             prodOwner == user ?  <button>+</button> : <></>
+                             prodOwner == user ?  <button onClick={createTask}>+</button> : <></>
                              
                            }   
                            
@@ -170,7 +200,7 @@ function ProductData(){
                     <table>             
                           <thead>           
                                <tr>
-                                    <th>Task</th>
+                                    <th>Task  ({numTask})</th>
                                     <th>Assign Name</th>   
                                     <th>Status</th>         
                                     <th>Due Date</th>

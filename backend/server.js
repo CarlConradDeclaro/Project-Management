@@ -65,7 +65,7 @@ const verifyUser=(req,res,next)=>{
 
 
 app.get('/', verifyUser,(req, res) => {
-     return res.json({Status : "Success" , name:req.name,  id: req.id})
+     return res.json({Status : "Success" , name:req.name,  id: req.id })
 });
 
 app.post('/SignIn', (req, res) => {
@@ -240,6 +240,66 @@ app.delete('/task/:id', (req, res) => {
     });
 });
 
+ 
+
+
+app.delete('/project-delete/:prodId', (req, res) => {
+    const itemId = req.params.prodId;
+    const sqlProject = "DELETE FROM project WHERE id = ?";
+    db.query(sqlProject, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+       
+
+     
+    const sqlTask = "DELETE FROM task WHERE projId = ?";
+    db.query(sqlTask, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        res.json({ message: 'Item deleted successfully' });
+    });
+
+});
+});
+
+app.delete('/project-delete/:prodId', (req, res) => {
+    const itemId = req.params.prodId;
+    const sqlProject = "DELETE FROM project WHERE id = ?";
+    db.query(sqlProject, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        res.json({ message: 'Item deleted successfully' });
+    });
+     
+    const sqlTask = "DELETE FROM task WHERE projId = ?";
+    db.query(sqlTask, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        res.json({ message: 'Item deleted successfully' });
+    });
+
+
+});
 
 app.listen('8000', () => {
     console.log("Listening on port 8000");
