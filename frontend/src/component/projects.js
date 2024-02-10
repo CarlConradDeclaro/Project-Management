@@ -16,6 +16,10 @@ function handleProjectClick() {
     navigate(`/project/${props.id}/${props.owner}`);
 }
 
+  const desc = props.description
+  let projectDetailsTrim = desc.substring(0, 100);
+
+
    
 
     return(
@@ -32,7 +36,7 @@ function handleProjectClick() {
 
                            <div className="description">
                                     <p>
-                                     {props.description}
+                                     {projectDetailsTrim}...
                                      </p>
                            </div>
 
@@ -196,7 +200,7 @@ function Projects() {
 
                                   {
                                 projectData.filter(data=> (data.status === "completed") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
-                                  <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
+                                  <Project key={data.id}  title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                   
                                 ))
                               }

@@ -72,14 +72,14 @@ const [usename,setUserName] = useState('');
 
              <Link to='/project' className='project-link'> 
              <div className='prroject'>
-             <img src={`http://localhost:8000/images/project.png`} /> 
+                     <img src={`http://localhost:8000/images/project.png`} /> 
                        <h2>Project</h2>
                   </div>
              </Link>
              
              <Link to='/task' className='task-link'>
                   <div className='task'>
-                  <img src={props.dashboard}/>
+                  <img src={`http://localhost:8000/images/task.png`} /> 
                        <h2>Task</h2>
                   </div>
              </Link>

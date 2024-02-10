@@ -199,19 +199,33 @@ app.post('/create-task',(req,res)=>{
         req.body.details,
         req.body.assign,
         req.body.status,
-        req.body.dueDate
-       
-    ];
-   
+        req.body.dueDate      
+    ]; 
+
+    const numTask = ++req.body.numTask
+    const projId =    req.body.id
 
     db.query(sql, values, (err, data) => {
         if (err) {
             console.error('Error inserting data into database:', err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.json({ success: true });
+
+        const sqlUpdate = "UPDATE project SET numTask = ? WHERE id = ?";
+        db.query(sqlUpdate, [numTask, projId], (err, result) => {
+            if (err) {
+                console.error('Error updating numTask:', err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            console.log('numTask updated successfully');
+            res.json({ message: 'numTask updated successfully' });
+        });    
+
+
     });
 })
+
+
  
 app.get('/getTask', (req, res) => {
     const {prodId} =  req.body
@@ -226,9 +240,15 @@ app.get('/getTask', (req, res) => {
 });
 
  
-app.delete('/task/:id', (req, res) => {
+app.delete('/task/:id/:numTTask/:projIdd', (req, res) => {
     const itemId = req.params.id;
     const sql = "DELETE FROM task WHERE id = ?";
+
+
+    const numTask = --req.params.numTTask
+    const proId =    req.params.projIdd
+
+
     db.query(sql, [itemId], (err, result) => {
         if (err) {
             console.error('Error deleting item:', err);
@@ -237,7 +257,17 @@ app.delete('/task/:id', (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Item not found' });
         }
-        res.json({ message: 'Item deleted successfully' });
+
+
+        const sqlUpdate = "UPDATE project SET numTask = ? WHERE id = ?";
+        db.query(sqlUpdate, [numTask, proId], (err, result) => {
+            if (err) {
+                console.error('Error updating numTask:', err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            console.log('numTask updated successfully');
+            res.json({ message: 'numTask updated successfully and deleted sussecfully' });
+        });    
     });
 });
 
@@ -264,43 +294,14 @@ app.delete('/project-delete/:prodId', (req, res) => {
             console.error('Error deleting item:', err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Item not found' });
-        }
+      
         res.json({ message: 'Item deleted successfully' });
     });
 
 });
 });
 
-app.delete('/project-delete/:prodId', (req, res) => {
-    const itemId = req.params.prodId;
-    const sqlProject = "DELETE FROM project WHERE id = ?";
-    db.query(sqlProject, [itemId], (err, result) => {
-        if (err) {
-            console.error('Error deleting item:', err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Item not found' });
-        }
-        res.json({ message: 'Item deleted successfully' });
-    });
-     
-    const sqlTask = "DELETE FROM task WHERE projId = ?";
-    db.query(sqlTask, [itemId], (err, result) => {
-        if (err) {
-            console.error('Error deleting item:', err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Item not found' });
-        }
-        res.json({ message: 'Item deleted successfully' });
-    });
-
-
-});
+ 
 
 app.listen('8000', () => {
     console.log("Listening on port 8000");
