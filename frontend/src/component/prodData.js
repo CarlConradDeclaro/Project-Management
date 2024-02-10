@@ -61,8 +61,11 @@ function ProductData(){
      const [create,setCreate] = useState(false)
 
     const createTask = () => {
-             setCreate(true)
+       setCreate(true)
+           
     };
+
+    const  numTask = task.filter( t =>(t.projId == prodId)).length
 
     const handleSave = () => {
          const taskData = {
@@ -70,7 +73,8 @@ function ProductData(){
             details: taskDetails,
             assign: taskAssign,
             status: taskStatus,
-            dueDate: taskDueDate
+            dueDate: taskDueDate,
+            numTask: numTask
         };
 
         axios.post("http://localhost:8000/create-task", taskData)
@@ -129,8 +133,14 @@ function ProductData(){
     }
 
 
-    function handleDelete (id){
-            axios.delete(`http://localhost:8000/task/${id}`)
+    function handleDelete (idd){
+
+        const id =idd
+        const prodIdd =  prodId
+        const numTTask = numTask   
+       
+
+            axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}`)
                 .then(response => {
                     console.log("Item deleted successfully");
                     // Perform any necessary UI updates
@@ -142,18 +152,18 @@ function ProductData(){
                 
     };
     
-    const  numTask = task.filter( t =>(t.projId == prodId)).length
     const prodDetails = project.filter(project => project.id == prodId);
     const projectTitles = prodDetails.map(project => project.projectTitle);
-    const projectDetails = prodDetails.map(project => project.description);
+    let projectDetails = prodDetails.map(project => project.description);
+
       
 
     function handleDeleteProj(){
           
         axios.delete(`http://localhost:8000/project-delete/${prodId}`)
-        .then(res =>{
+        .then(res =>{            
+            navigate('/project');
                 console.log("Project deleted");
-                navigate('/project')
         }).catch(err => console.log(err))
 
        

@@ -168,3 +168,7 @@
   .prod-Delete:hover .Proddelete{
     display: block;
   }
+
+  .prodData-Details p{
+    word-wrap: break-word;
+  }
