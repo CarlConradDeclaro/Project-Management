@@ -183,7 +183,10 @@ function ProductData(){
                                 </div>
 
                                 <div className='prod-Delete'>
-                                        <img src={`http://localhost:8000/images/dots.png`} /> 
+                                     
+                                     {
+                                           prodOwner == user ?     <img src={`http://localhost:8000/images/dots.png`} />  : <></>
+                                     }
                                         <div class="Proddelete">
                                                 <button onClick={handleDeleteProj}>Delete</button>        
                                         </div>
@@ -211,7 +214,7 @@ function ProductData(){
                           <thead>           
                                <tr>
                                     <th>Task  ({numTask})</th>
-                                    <th>Assign Name</th>   
+                                    <th>Assignee</th>   
                                     <th>Status</th>         
                                     <th>Due Date</th>
                                     {
@@ -280,7 +283,7 @@ function ProductData(){
                                         {
                                             
                                               task.filter(data => data.projId === parseInt(prodId)).slice().reverse().map((data) => (
-                                                <tr key={data.id}> 
+                                                <tr key={data.id} > 
                                                     <td className="details-cell">{data.details}</td>
                                                     <td  className='assign-user-profile'>
                                                         <div>
