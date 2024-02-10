@@ -218,3 +218,71 @@
       .profile:hover .dropdown-content {
       display: block;
   }
+
+
+
+
+
+
+
+  .productLoading{
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    height: auto;
+    margin: 10px;
+   }
+
+  .project-inLoading{
+    width:83%;
+    min-height: 260px;
+    background-color: #e8e6e6;
+    border-radius:5px;
+    padding: 15px;
+    cursor: progress;
+    margin-bottom: 10px;
+  }
+  .img-inLoading{ 
+     width:100%;
+     height: 110px;
+     border-radius: 5px;
+  }
+  .prjTitle-inLoading{
+    margin-top: 15px;
+    width:75%;
+    height: 15px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  .description-inLoading p{
+    margin-top: 20px;
+    width:100%;
+    height: 5px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  .project-tags-inLoading{
+    display: flex;
+    gap: 10px
+  }
+  .project-tags-inLoading div{
+   width: 100px;
+   height: 25px;
+   background-color: #f1f1f1;
+  }
+
+  .product-working-loading , .product-inprogress-loading, .product-completed-loading{
+    width: 290px;
+    height:72vh; /* Set the maximum height you want for the scrollable area */
+    overflow-y: auto;
+ 
+  }
+
+  .product-working-loading::-webkit-scrollbar ,.product-inprogress-loading::-webkit-scrollbar, .product-completed-loading::-webkit-scrollbar{
+    width: 6px; /* Set the width of the scrollbar */
+  }
+  
+  .product-working-loading::-webkit-scrollbar-thumb ,   .product-inprogress-loading::-webkit-scrollbar-thumb ,.product-completed-loading::-webkit-scrollbar-thumb    {
+    background-color: #999; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+  }
