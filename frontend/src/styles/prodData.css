@@ -39,7 +39,7 @@
     color: white;
 }
 
-.prodData-Task{
+ .prodData-Task  {
     margin: 30px;
     width: auto;
     height: 70vh;
@@ -56,7 +56,7 @@
  .prodData-Task table{
     width: 100%;
    
-    font-size: 18px;
+    font-size: 15px;
     
    padding: 0 10px 0 10px;
    
@@ -64,40 +64,59 @@
 }
 .prodData-Task th:first-child,
 .prodData-Task td:first-child {
-    width: 50%; /* Adjust the width as needed */
+    width: 55%; 
     
 }
+.prodData-Tas-owner th:nth-child(2),
+.prodData-Task-owner td:nth-child(2) {
+  width:10%;    
+}
+ 
+.prodData-Tas-owner th:nth-child(3),
+.prodData-Task-owner td:nth-child(3) {
+  width:8%;    
+}
+.prodData-Tas-owner th:nth-child(4),
+.prodData-Task-owner td:nth-child(4) {
+  width:10%;    
+}
+
+
 .prodData-Task th {
     background-color: #2A2836;
     color: white;
-     font-size: 25px;
+     font-size: 18px;
     padding: 10px;
-  
+    position: sticky;
+    top: 0;  
+   
 }
-.prodData-Task th:first-child{
+/* .prodData-Task th:first-child{
     border-top-left-radius: 15px;
     
 }
 .prodData-Task th:last-child{
     border-top-right-radius: 15px;
+
     
-}
+} */
 .prodData-Task td{
     background-color: #38374F;
     border-left: 2px solid gray;
-  
+    padding: 0px;
 }
 .prodData-Task td:nth-child(1){
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     border-left: 10px solid rgb(5, 255, 59);
+   
 }
 
 .prodData-Task table,
 .prodData-Task td,
 .prodData-Task th {
-    border-spacing: 0px 1rem;
-   
+    border-spacing: 0px 20px;
+     
 }  
  
 
@@ -108,7 +127,7 @@
 .prodData-Task td input,select{
     border-radius: 10px;
     outline: none;
-    width: 120px;
+    width: 90px;
 }
 .prodData-Task td:nth-child(3).prodData-Task td:nth-child(4){
     text-align: center;   
@@ -117,36 +136,54 @@
  
 
  .task-details textarea{
-    width: 100%;
+    width: 98%;
     height: 50px;
     margin: 0;
+    background-color:#38374F;
+    border: none;
+    outline: none;
+    color: white;
 }
 .task-Status select{
     width: 100%;
     height: 50px;
     margin: 0;
+    background-color:#38374F;
+    border: none;
+    outline: none;
+    color: white;
 }
 .task-Assign input{
     width: 100%;
     height: 50px;
     margin: 0;
+    background-color:#38374F;
+    border: none;
+    outline: none;
+    color: white;
 }
 .task-DueDate input{
     width: 100%;
     height: 50px;
     margin: 0;
     font-size: 15px;
+    background-color:#38374F;
+    border: none;
+    outline: none;
+    color: white;
 }
 
 .task-Btn {
-    text-align: center;  
+    text-align: center; 
+    width: 130px; 
 }
 .details-cell {
-     max-width: 200px; /* Example max-width, adjust as needed */
+     max-width: 100px; /* Example max-width, adjust as needed */
      overflow-y: auto;  
      cursor: pointer;
-     color: white;
-     font-weight: 100;
+     color: rgb(255, 255, 255);
+     font-weight: 90;
+    
 }
 .details-cell:hover{
     color: #9C0AE0;
@@ -159,9 +196,7 @@
     background-color: #cfcccc; /* Set the color of the scrollbar thumb */
     border-radius: 5px;
 }
-.task-Btn button {
-    margin-right: 5px;
-}
+
 
 
 .assign-user-profile div{
@@ -183,11 +218,13 @@
     border-radius: 5px;
     color: rgb(255, 255, 255);
      text-align: center;
-     margin: 10px;
+     margin: 15px;
+     font-size: 20px;
 }
 .prodData-date{
     text-align: center;
     color: #b0aeae;
+    font-size: 20px;
 }
 
   .prodData-title{
@@ -223,9 +260,10 @@
     word-wrap: break-word;
     color: rgb(220, 210, 210);
   }
-
+ 
   .task-Btn button{
-    width: 100px;
+    margin-left: 10px;
+    width: 65px;
     height: 35px;
     border-radius: 10px;
     cursor: pointer;
@@ -239,4 +277,4 @@
     color: rgb(0, 0, 0);
   }
 
- 
+    

@@ -210,7 +210,7 @@ function ProductData(){
 
                     <div className='prodData-Task'>
                    
-                    <table>             
+                    <table className={prodOwner === user ? '' : 'prodData-Task-owner'}>             
                           <thead>           
                                <tr>
                                     <th>Task  ({numTask})</th>
@@ -281,9 +281,9 @@ function ProductData(){
                                                                              
                                   
                                         {
-                                            
+                                          
                                               task.filter(data => data.projId === parseInt(prodId)).slice().reverse().map((data) => (
-                                                <tr key={data.id}  > 
+                                                <tr key={data.id}  className='task' > 
                                                     <td className="details-cell">{data.details}</td>
                                                     <td  className='assign-user-profile'>
                                                         <div>
@@ -310,6 +310,7 @@ function ProductData(){
                                                    
                                                 </tr> 
                                             ))
+                                            
                                         }
                                       
                         </tbody>

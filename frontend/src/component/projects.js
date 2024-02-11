@@ -207,8 +207,10 @@ function Projects() {
               
                                               <div className="users-project-header-working">
                                               
-              
-                                                  <h2>Working   ({number_working} )</h2>
+                                      <div className="x">
+                                      <h2>Working   ({number_working} )</h2>
+                                      </div>
+                                                
                                               </div> 
                                             {
                                               projectData.filter(data=> (data.status === "working") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
