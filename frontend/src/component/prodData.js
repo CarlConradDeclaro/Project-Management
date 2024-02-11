@@ -283,7 +283,7 @@ function ProductData(){
                                         {
                                             
                                               task.filter(data => data.projId === parseInt(prodId)).slice().reverse().map((data) => (
-                                                <tr key={data.id} > 
+                                                <tr key={data.id}  > 
                                                     <td className="details-cell">{data.details}</td>
                                                     <td  className='assign-user-profile'>
                                                         <div>

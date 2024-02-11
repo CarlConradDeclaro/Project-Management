@@ -11,7 +11,7 @@
       height: auto;
      
        
-     background-color: #242230;
+     background-color: #272638;
        }
 
     .project-content .header{
@@ -85,8 +85,7 @@
       cursor: pointer;
       border: 1px solid gray;
       border-radius: 5px;
-      background-color: #24212f;
-      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
 
     
     }
@@ -117,8 +116,11 @@
     .project .prjTitle{
       padding-left: 10px;
       padding-right: 10px;
+   
+     
+      
     }
-
+    
     .project-tags {
       display: flex;
       margin: 10px;
@@ -129,14 +131,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: orange;
+      background-color:  #FFB930;
       width: 80px;
       height: 30px;
       margin-right: 10px;
       text-align: center;
       border-radius: 5px;
     }
-    
+    .project-tags div:nth-child(2){
+      background-color:#bb0eca;
+     
+    }
+
+    .project-tags div  p {
+      color: rgb(255, 255, 255);
+    }
 
   
     
@@ -156,7 +165,7 @@
     }
 
 
-    .users-project-working h2 ,  .users-project-progress h2 ,.users-project-header-completed h2 {
+    .users-project-working h2 ,  .users-project-progress h2 ,.users-project-completed h2 {
       font-size: 15px;
       color: #ffffff;
       margin-left: 15px;
@@ -245,7 +254,7 @@
   .project-inLoading{
     width:80%;
     min-height: 260px;
-    background-color: #e8e6e6;
+    background-color: #ffffffa9;
     border-radius:5px;
     padding: 15px;
     cursor: progress;

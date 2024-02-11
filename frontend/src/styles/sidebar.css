@@ -1,6 +1,6 @@
 .sidebar {
    width: 15%;
-   min-height:95vh;
+   min-height:100vh;
    background-color:#2B2936;
  
    
@@ -46,7 +46,7 @@
  }
  
  .sidebar-oparation  div:hover {
-   background-color: #FFF4EE;
+   background-color: #66446c;
    cursor: pointer;
    border-right-color: #FD8648;
    color: #FD8648; /* Set the color when hovering over the entire div */

@@ -42,7 +42,7 @@ const Project = (props) => {
               </div>
 
               <div className="prjTitle">
-                <h2>{props.title || <Skeleton />}</h2>
+                <h2> {props.title || <Skeleton />}</h2>
               </div>
 
               <div className="description">
@@ -233,19 +233,22 @@ function Projects() {
                                         ))
                                       }
                                   </div>
-        
-                                  <div className="users-project-completed">
+
+
+                                    <div className="users-project-completed">
                                       <div className="users-project-header-completed">
                                               <h2>Completed   ({number_completed})</h2>
                                           </div> 
         
                                           {
                                         projectData.filter(data=> (data.status === "completed") && (data.owner === userId || (data.members.includes(name)))).slice().reverse().map((data)=>(
-                                          <Project key={data.id}  id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
-                                          
+                                          <Project key={data.id} id={data.id} owner={data.owner} title={data.projectTitle} description={data.description} img={data.image}   tags={data.tags}/>
                                         ))
                                       }
-                                  </div>                          
+                                  </div>
+
+        
+                                                      
                         </div>
                
 
