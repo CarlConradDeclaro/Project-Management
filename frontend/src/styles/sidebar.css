@@ -1,9 +1,9 @@
 .sidebar {
    width: 15%;
-   min-height:95vh;
-   background-color: #ffffff;
-   margin: 10px;
-   border-radius: 10px;
+   min-height:100vh;
+   background-color:#2B2936;
+ 
+   
    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 
  }
@@ -19,7 +19,7 @@
 
  .sidebar-username .User h2{
       font-size: 25px;
-      color: black;
+      color: rgb(255, 255, 255);
  }
  .sidebar-oparation div{
       display: flex;
@@ -29,7 +29,8 @@
  
  .sidebar div h2 {
    font-size: 20px;
-   color: #D1D1D3;
+   color: #ffffff;
+   font-weight: 100;
    margin-left: 10px;
  }
  
@@ -45,7 +46,7 @@
  }
  
  .sidebar-oparation  div:hover {
-   background-color: #FFF4EE;
+   background-color: #66446c;
    cursor: pointer;
    border-right-color: #FD8648;
    color: #FD8648; /* Set the color when hovering over the entire div */

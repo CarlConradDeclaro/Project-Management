@@ -10,7 +10,7 @@
     width: 85%;  
     margin: 5px;
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color:#242230;
 }
 
 .profile-user-details{
@@ -45,6 +45,7 @@
 }
 .profile-name label{
     font-size: 22px;
+    color: white;
 }
 .profile-name input{
     width: 100%;
@@ -70,5 +71,13 @@
 }
 
 .user-names h2{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
+    color: white;
+}
+.edit-user-form input{
+    background-color:#242230;
+    color: white;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
 }

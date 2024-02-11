@@ -54,7 +54,7 @@ const [usename,setUserName] = useState('');
      <div className='sidebar-username'>
 
         <div className='User'>
-             <h2>{usename}</h2> 
+             <h2>{usename.toUpperCase()}</h2> 
         </div>
 
      </div>
