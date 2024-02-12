@@ -180,6 +180,10 @@ function ProductData(){
                            <div className='prodData-title'>
                                 <div className='prodTitle'>
                                         <h1 className='prodData-title'>{projectTitles}  </h1>   
+                                        {
+                                            prodOwner == user &&
+                                        <img src={`http://localhost:8000/images/prodEdit.png`} /> 
+                                        }
                                 </div>
 
                                 <div className='prod-Delete'>
@@ -201,25 +205,56 @@ function ProductData(){
 
 
                     <div className='prodData-create' >
+                        <div className='prodData-create-Controls'>
+                               {
+                                prodOwner == user &&
+                                <div className='add-member'>
+                                    <img src={`http://localhost:8000/images/addMember.png`} /> 
+                                    <p>add member</p>
+                                </div>
+                              }
+
+                                <div className='see-member'>
+                                   <img src={`http://localhost:8000/images/people.png`} /> 
+                                    <p>People</p>
+                               </div>
+
+                               <div className='see-stats'>
+                                   <img src={`http://localhost:8000/images/stats.png`} /> 
+                                    <p>Stats</p>
+                               </div>
+
+                               {
+                                prodOwner == user &&
+                               <div className='mark-a-done'>   
+                                     <p>Mark as:</p>
+                                     <button>Done</button>
+                                     
+                               </div>
+                                }
+                             
+                        </div>
+                      
                            {
                              prodOwner == user ?  <button onClick={createTask}>+</button> : <></>
                              
                            }   
+                            
                            
                     </div>
 
                     <div className='prodData-Task'>
                    
-                    <table className={prodOwner === user ? '' : 'prodData-Task-owner'}>             
+                    <table  >             
                           <thead>           
                                <tr>
                                     <th>Task  ({numTask})</th>
                                     <th>Assignee</th>   
                                     <th>Status</th>         
                                     <th>Due Date</th>
-                                    {
-                                        prodOwner == user ? <th>Controls</th> : <></>
-                                    }
+                                    
+                                   { prodOwner == user && <th>Controls</th> }   
+                                   
                                    
                               </tr>
                          </thead>
@@ -301,11 +336,16 @@ function ProductData(){
                                                    {
                                                     prodOwner == user ? 
                                                     <td colSpan="2" className='task-Btn'>
-                                                    <button onClick={e => setCreate(false)}>Edit</button>
+                                                    <button onClick={e => setCreate(false)}>  Update  </button>
                                                     <button onClick={() => handleDelete(data.id)}>Delete</button>
                                                    </td>  
                                                     : 
-                                                    <></>
+                                                //     <td colSpan="2" className='task-Btn'>
+                                                //     <button >Suggeestion</button>
+                                                   
+                                                //    </td> 
+                                                <></>
+                                              
                                                    }
                                                    
                                                 </tr> 

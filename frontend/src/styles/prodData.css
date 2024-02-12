@@ -21,13 +21,54 @@
     font-size: 14px;
     color: grey;
 }
+.prodTitle{
+    display: flex;
+}
+.prodTitle img{
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.prodData-create-Controls{
+    display: flex;
+    gap: 10px;
+}
 .prodData-create{
     display: flex;
-    justify-content: end;
-    margin: 0px 30px 0px 0px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px 0px 30px;
+
+ } 
+.add-member,.see-member, .mark-a-done, .see-stats{
+    display: flex;
+    align-items: center; 
+    margin: 0 30px 0 0;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 5px;
 }
-.prodData-create button{
-    
+ .add-member, .see-member, .mark-a-done ,.see-stats p{
+    color: #d9d9d9;    
+ }
+ 
+ .prodData-create .mark-a-done button{
+    width: 55px;
+    height: 25px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: red;
+ }
+ .prodData-create .mark-a-done button:hover{
+    background-color: rgb(20, 229, 20);
+ }
+
+ .prodData-create-Controls div img{
+    width: 25px;
+    height: 25px;
+ }
+.prodData-create button{  
     width: 100px;
     height: 40px;
     border-radius: 10px;
@@ -67,19 +108,7 @@
     width: 55%; 
     
 }
-.prodData-Tas-owner th:nth-child(2),
-.prodData-Task-owner td:nth-child(2) {
-  width:10%;    
-}
  
-.prodData-Tas-owner th:nth-child(3),
-.prodData-Task-owner td:nth-child(3) {
-  width:8%;    
-}
-.prodData-Tas-owner th:nth-child(4),
-.prodData-Task-owner td:nth-child(4) {
-  width:10%;    
-}
 
 
 .prodData-Task th {
@@ -263,7 +292,7 @@
  
   .task-Btn button{
     margin-left: 10px;
-    width: 65px;
+   
     height: 35px;
     border-radius: 10px;
     cursor: pointer;
