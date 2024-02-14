@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST","GET","PUT","DELETE"],
+    methods: ["POST","GET","DELETE","PUT"],
     credentials: true
 }));
 app.use(express.static('public'))
@@ -225,6 +225,31 @@ app.post('/create-task',(req,res)=>{
 
     });
 })
+app.put('/update-taskDone', (req, res) =>{
+    const taskId = req.body.taskid;
+    const taskDone = ++req.body.tskDone
+    const sqlUpdate = "UPDATE project SET taskDone = ?, status =? WHERE id = ?";   
+    db.query(sqlUpdate, [taskDone,"inprogress", taskId], (err, result) => {
+        if (err) {
+            console.error('Error updating numTask:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        console.log('numTask updated successfully');
+        res.json({ message: 'numTask updated successfully' });
+    });   
+})
+
+app.put('/update-task', (req, res) => {
+
+    const Id = req.body.id;
+    const sql = "UPDATE task SET status = 'Done'  WHERE id = ?";    
+    db.query(sql, [Id], (err, data) => {
+      if (err) {
+        console.error('Error updating task in the database:', err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+  });
 
 
  

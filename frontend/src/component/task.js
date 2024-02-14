@@ -6,30 +6,19 @@ import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+ 
 
 
-const TaskComp = ({task,duedate,priority,})=>{
-  return(
-    <div className="user-task">         
-        <div className={priority === "low" ?  'user-task-details-low' :    priority === 'medium'  ?  'user-task-details-medium' :  'user-task-details-high'}> {task}</div>
-        <div className="dueDate">{duedate}</div>
-        <div  className={priority === "low" ?  'user-task-priority-low' :    priority === 'medium'  ?  'user-task-priority-medium' :  'user-task-priority-high'} >{priority}</div>
-        
-         <div className="controls">
-              <input type="checkbox" />
-              <span className="checkbox">Done</span>                                     
-        </div>
-  </div>
-  )
-}
 
 
+  
 function Task() {
 
      const [task,setTask] = useState([])
     
 
      const [userName,setUserName] = useState('') // user name
+     
 
      axios.defaults.withCredentials = true;
      useEffect(() => {
@@ -48,6 +37,46 @@ function Task() {
         .then(res=> setTask(res.data))
         .catch(err => console.log(err))
      })
+
+
+     function updateTask(id) {  
+      axios.put('http://localhost:8000/update-task', {id:id})
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+
+       
+    }
+
+    function updateTaskDone(projId) {
+      const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;
+        
+      axios.put('http://localhost:8000/update-taskDone', { taskid: projId, tskDone:taskDone})
+      .then(res => console.log(res))
+      .catch(err => console.error(err));   
+    }
+
+    function update(id,projId){
+      updateTask(id)
+      updateTaskDone(projId)
+    }
+
+
+    // Task Component
+    const TaskComp = ({ id,projId, task, duedate, priority }) => {
+      return (
+        <div className="user-task">
+          <div className={priority === "low" ? 'user-task-details-low' : priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}>{task}</div>
+          <div className="dueDate">{duedate}</div>
+          <div className={priority === "low" ? 'user-task-priority-low' : priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}>{priority}</div>
+          <div className="controls">
+            <button onClick={()=>update(id,projId)}>Done</button>
+            <button>Suggestion</button>
+          </div>
+        </div>
+      );
+    };
+
+     
 
 
 
@@ -134,11 +163,9 @@ function Task() {
                                     <div className="task-user-body">     
                                                                     
                                        {
-                         task.filter(data => data.assign === userName).slice().reverse().map((data) => (
-
-                          <TaskComp   task={data.details}  duedate = {data.dueDate.split('T')[0]}  priority={data.priority}  />
-                          
-                         ))
+                                        task.filter(data => data.assign === userName && data.status != "Done").slice().reverse().map((data) => (
+                                          <TaskComp key={data.id} projId={data.projId}  id={data.id} task={data.details} duedate={data.dueDate.split('T')[0]} priority={data.priority} />
+                                        ))
 
                                        }
                                         
@@ -154,22 +181,7 @@ function Task() {
                                       
                                     <div className="task-user-body">     
                                                                     
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                          <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                          <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
+                                       
                                     </div>     
 
                                       
