@@ -192,14 +192,15 @@ app.get('/logout',(req,res)=>{
 
 app.post('/create-task',(req,res)=>{
     
-    const sql = "INSERT INTO task (projId,details,assign,status,dueDate) VALUES (?,?,?,?,?)"
+    const sql = "INSERT INTO task (projId,details,assign,status,dueDate,priority) VALUES (?,?,?,?,?,?)"
  
     const values = [
         req.body.id,
         req.body.details,
         req.body.assign,
         req.body.status,
-        req.body.dueDate      
+        req.body.dueDate,
+        req.body.priority  
     ]; 
 
     const numTask = ++req.body.numTask

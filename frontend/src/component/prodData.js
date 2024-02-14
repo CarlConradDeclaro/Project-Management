@@ -24,10 +24,11 @@ function ProductData(){
   
     const location = useLocation()
 
-     const [taskDetails, setTaskDetails] = useState('');
+    const [taskDetails, setTaskDetails] = useState('');
     const [taskAssign, setTaskAssign] = useState('');
     const [taskStatus, setTaskStatus] = useState('working');
     const [taskDueDate, setTaskDueDate] = useState('');
+    const [priority,setPriority] = useState("low");
 
      const [members,setMembers] = useState([])
     const [task,setTask] =useState([])
@@ -74,7 +75,8 @@ function ProductData(){
             assign: taskAssign,
             status: taskStatus,
             dueDate: taskDueDate,
-            numTask: numTask
+            numTask: numTask,
+            priority:priority
         };
 
         axios.post("http://localhost:8000/create-task", taskData)
@@ -250,7 +252,8 @@ function ProductData(){
                                <tr>
                                     <th>Task  ({numTask})</th>
                                     <th>Assignee</th>   
-                                    <th>Status</th>         
+                                    <th>Status</th>     
+                                    <th>Priority</th>      
                                     <th>Due Date</th>
                                     
                                    { prodOwner == user && <th>Controls</th> }   
@@ -299,12 +302,24 @@ function ProductData(){
                                                 >
                                                     <option value="working">Working</option>
                                                 </select>
-                                            </td>         
+                                            </td>
+
+                                            <td>
+                                                <select 
+                                                    value={priority}
+                                                    onChange={(e) => setPriority(e.target.value)}
+                                                    >
+                                                        <option value="low">Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                </select>
+                                            </td>       
+
                                             <td className='task-DueDate' 
                                             value={taskDueDate}
                                             onChange={(e) => setTaskDueDate(e.target.value)}
                                             > 
-                                                    <input type='date'/>
+                                                   <input type='date'/>
                                             </td>
                                             <td colSpan="2" className='task-Btn' >
                                                 <button onClick={handleSave}>Save</button>
@@ -331,7 +346,8 @@ function ProductData(){
                                                        
 
                                                     </td>
-                                                    <td className='prodData-status'><p>{data.status}</p></td>                                   
+                                                    <td className='prodData-status'><p>{data.status}</p></td>
+                                                    <td className={data.priority === "low" ?   'prodData-priority-low' :  data.priority === "medium" ? 'prodData-priority-medium' : 'prodData-priority-high'}><p>{data.priority}</p></td>                                    
                                                     <td><p className='prodData-date'>{data.dueDate.split('T')[0]}</p></td>
                                                    {
                                                     prodOwner == user ? 

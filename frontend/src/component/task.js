@@ -3,15 +3,17 @@ import Sidebar  from "./sidebar";
 
 import '../styles/task.css'
 import { Link , useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
-const TaskComp = ()=>{
+const TaskComp = ({task,duedate,priority,})=>{
   return(
     <div className="user-task">         
-        <div className="details"> dxvv cv  b bcv b b b b bbv bvcvbcb b bbv ccv b bvc bcv vb gbjkfghnkfgh fg fg hfbhngjknbhn gh n n cn bn cv nc n nc nc n nhfg hfh h fgh fhg g fghfg   fg dg gd gfgd gd  hjfg jf hhgjdf</div>
-        <div className="dueDate">02/15/2024</div>
-        <div className="priority">Medium</div>
+        <div className={priority === "low" ?  'user-task-details-low' :    priority === 'medium'  ?  'user-task-details-medium' :  'user-task-details-high'}> {task}</div>
+        <div className="dueDate">{duedate}</div>
+        <div  className={priority === "low" ?  'user-task-priority-low' :    priority === 'medium'  ?  'user-task-priority-medium' :  'user-task-priority-high'} >{priority}</div>
         
          <div className="controls">
               <input type="checkbox" />
@@ -23,6 +25,32 @@ const TaskComp = ()=>{
 
 
 function Task() {
+
+     const [task,setTask] = useState([])
+    
+
+     const [userName,setUserName] = useState('') // user name
+
+     axios.defaults.withCredentials = true;
+     useEffect(() => {
+       axios.get('http://localhost:8000')
+         .then(res => {
+           if (res.data.Status === "Success") {     
+             setUserName(res.data.name)
+            }  
+         })
+         .catch(err => console.log(err)); // Add error handling here
+     }, []);
+
+
+     useEffect(()=>{
+        axios.get('http://localhost:8000/getTask')
+        .then(res=> setTask(res.data))
+        .catch(err => console.log(err))
+     })
+
+
+
 
    const navigate = useNavigate()
     return (
@@ -105,22 +133,15 @@ function Task() {
                                     
                                     <div className="task-user-body">     
                                                                     
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
-                                        <TaskComp/>
+                                       {
+                         task.filter(data => data.assign === userName).slice().reverse().map((data) => (
+
+                          <TaskComp   task={data.details}  duedate = {data.dueDate.split('T')[0]}  priority={data.priority}  />
+                          
+                         ))
+
+                                       }
+                                        
                                     </div>                       
                           </div>
 
