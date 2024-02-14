@@ -87,7 +87,7 @@
 .user-task div:nth-child(1){
     width: 60%;
      border-bottom-left-radius: 10px;
-     border-left:10px solid rgb(5, 255, 59);
+     border-top-left-radius: 10px;
     
  }
  .user-task .details {  
@@ -112,15 +112,44 @@
 .user-task div:nth-child(2){
      width: 12%;
      justify-content: center;
-    }
+}
 .user-task div:nth-child(3){
     width: 13%;
      justify-content: center;
-    }
+    
+}
 .user-task div:nth-child(4){
     width:15%;
      justify-content: center;
-      }
+}
+
+
+.user-task .user-task-details-low{    
+     border-left:10px solid  orange;
+ }
+ .user-task .user-task-details-medium{    
+    border-left:10px solid   rgb(238, 255, 2);
+}
+.user-task .user-task-details-high{    
+    border-left:10px solid red;
+}
+ 
+
+
+ .user-task .user-task-priority-low{
+    background-color: orange;
+    color: rgb(0, 0, 0);    
+}
+.user-task .user-task-priority-medium{
+    background-color: rgb(238, 255, 2);
+    color: rgb(0, 0, 0);   
+}
+.user-task .user-task-priority-high{
+    background-color:red;
+    color: rgb(255, 255, 255);   
+}
+
+
 
 .task-user-body{
     max-height: 180px;

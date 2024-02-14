@@ -1,7 +1,5 @@
 .prodData-container{
     display: flex;
-     
-   
 }
 
 .prodData-content{
@@ -105,12 +103,10 @@
 }
 .prodData-Task th:first-child,
 .prodData-Task td:first-child {
-    width: 55%; 
+    width: 40%; 
     
 }
  
-
-
 .prodData-Task th {
     background-color: #2A2836;
     color: white;
@@ -120,15 +116,7 @@
     top: 0;  
    
 }
-/* .prodData-Task th:first-child{
-    border-top-left-radius: 15px;
-    
-}
-.prodData-Task th:last-child{
-    border-top-right-radius: 15px;
-
-    
-} */
+ 
 .prodData-Task td{
     background-color: #38374F;
     border-left: 2px solid gray;
@@ -148,25 +136,25 @@
      
 }  
  
-
-.prodData-Task td:nth-child(2){
+ 
+.prodData-Task td:nth-child(4){
     text-align: center;
     
-}     
+} 
+.prodData-Task td:nth-child(5){
+    text-align: center;
+    
+} 
 .prodData-Task td input,select{
     border-radius: 10px;
     outline: none;
     width: 90px;
 }
-.prodData-Task td:nth-child(3).prodData-Task td:nth-child(4){
-    text-align: center;   
-}
-
+ 
  
 
  .task-details textarea{
     width: 98%;
-    height: 50px;
     margin: 0;
     background-color:#38374F;
     border: none;
@@ -175,36 +163,39 @@
 }
 .task-Status select{
     width: 100%;
-    height: 50px;
+   
     margin: 0;
     background-color:#38374F;
     border: none;
     outline: none;
     color: white;
 }
-.task-Assign input{
+.task-Assign input{  
     width: 100%;
-    height: 50px;
     margin: 0;
     background-color:#38374F;
     border: none;
     outline: none;
     color: white;
 }
-.task-DueDate input{
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    font-size: 15px;
-    background-color:#38374F;
-    border: none;
-    outline: none;
-    color: white;
+ 
+ 
+.prodData-Task .task-DueDate input{
+    width: 120px;
+    height: 50px; 
+    font-size: 15px;   
+     border: none;
+     outline: none;
+     background-color:#38374F;
+     color: white;
+     
 }
+
+
 
 .task-Btn {
     text-align: center; 
-    width: 130px; 
+    width: 120px; 
 }
 .details-cell {
      max-width: 100px; /* Example max-width, adjust as needed */
@@ -242,7 +233,7 @@
     border-radius: 50%;
 }
 
-.prodData-status p{
+.prodData-status p {
     background-color: #00ff04fb;
     border-radius: 5px;
     color: rgb(255, 255, 255);
@@ -250,6 +241,37 @@
      margin: 15px;
      font-size: 20px;
 }
+
+.prodData-priority-low p{
+    background-color: #fd7a00fb;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+     text-align: center;
+     margin: 15px;
+     font-size: 20px;
+}
+.prodData-priority-medium p{
+    background-color: #d7fd00fb;
+    border-radius: 5px;
+    color: rgb(3, 3, 3);
+     text-align: center;
+     margin: 15px;
+     font-size: 20px;
+}
+
+.prodData-priority-high p{
+    background-color: #fd0000fb;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+     text-align: center;
+     margin: 15px;
+     font-size: 20px;
+}
+
+
+
+
+
 .prodData-date{
     text-align: center;
     color: #b0aeae;
