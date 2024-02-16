@@ -219,7 +219,7 @@ app.post('/create-task',(req,res)=>{
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
             console.log('numTask updated successfully');
-            res.json({ message: 'numTask updated successfully' });
+            res.json({ message: 'numTask added successfully' });
         });    
 
 
@@ -242,8 +242,8 @@ app.put('/update-taskDone', (req, res) =>{
 app.put('/update-task', (req, res) => {
 
     const Id = req.body.id;
-    const sql = "UPDATE task SET status = 'Done'  WHERE id = ?";    
-    db.query(sql, [Id], (err, data) => {
+    const sql = "UPDATE task SET status = 'Done' WHERE id = ?";    
+    db.query(sql, Id, (err, data) => {
       if (err) {
         console.error('Error updating task in the database:', err);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -266,14 +266,17 @@ app.get('/getTask', (req, res) => {
 });
 
  
-app.delete('/task/:id/:numTTask/:projIdd', (req, res) => {
+app.delete('/task/:id/:numTTask/:projIdd/:taskdoneval/:status', (req, res) => {
     const itemId = req.params.id;
     const sql = "DELETE FROM task WHERE id = ?";
 
 
+    
+    const td =   req.params.taskdoneval > 0  && req.params.status == 'Done'?  --req.params.taskdoneval : req.params.status === "working" && req.params.status > 0 ? --req.params.numTTask :  req.params.status === 'Done' ? --req.params.taskdoneval:0;
+
     const numTask = --req.params.numTTask
     const proId =    req.params.projIdd
-
+   
 
     db.query(sql, [itemId], (err, result) => {
         if (err) {
@@ -285,8 +288,8 @@ app.delete('/task/:id/:numTTask/:projIdd', (req, res) => {
         }
 
 
-        const sqlUpdate = "UPDATE project SET numTask = ? WHERE id = ?";
-        db.query(sqlUpdate, [numTask, proId], (err, result) => {
+        const sqlUpdate = "UPDATE project SET numTask = ?, taskDone=? WHERE id = ?";
+        db.query(sqlUpdate, [numTask,td, proId], (err, result) => {
             if (err) {
                 console.error('Error updating numTask:', err);
                 return res.status(500).json({ error: 'Internal Server Error' });

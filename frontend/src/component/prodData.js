@@ -135,14 +135,18 @@ function ProductData(){
     }
 
 
-    function handleDelete (idd){
+    function handleDelete(idd,projIdTD,status){
 
         const id =idd
         const prodIdd =  prodId
         const numTTask = numTask   
-       
+         
+        const val = project.filter(project => project.id == projIdTD)
+        const taskdoneval=  val.map(e => e.taskDone)
 
-            axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}`)
+      
+       
+            axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}/${taskdoneval}/${status}`)
                 .then(response => {
                     console.log("Item deleted successfully");
                     // Perform any necessary UI updates
@@ -154,7 +158,7 @@ function ProductData(){
                 
     };
     
-    const prodDetails = project.filter(project => project.id == prodId);
+    const prodDetails = project.filter(val => project.id == prodId);
     const projectTitles = prodDetails.map(project => project.projectTitle);
     let projectDetails = prodDetails.map(project => project.description);
 
@@ -353,7 +357,7 @@ function ProductData(){
                                                     prodOwner == user ? 
                                                     <td colSpan="2" className='task-Btn'>
                                                     <button onClick={e => setCreate(false)}>  Update  </button>
-                                                    <button onClick={() => handleDelete(data.id)}>Delete</button>
+                                                    <button onClick={() => handleDelete(data.id,parseInt(prodId) ,data.status)}>Delete</button>
                                                    </td>  
                                                     : 
                                                 //     <td colSpan="2" className='task-Btn'>

@@ -39,14 +39,18 @@ function Task() {
      })
 
 
-     function updateTask(id) {  
+    
+
+   
+
+    const  updateTask = (id)=> {  
+      
       axios.put('http://localhost:8000/update-task', {id:id})
         .then(res => console.log(res))
         .catch(err => console.error(err));
-
+      
        
     }
-
     function updateTaskDone(projId) {
       const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;
         
@@ -61,27 +65,11 @@ function Task() {
     }
 
 
-    // Task Component
-    const TaskComp = ({ id,projId, task, duedate, priority }) => {
-      return (
-        <div className="user-task">
-          <div className={priority === "low" ? 'user-task-details-low' : priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}>{task}</div>
-          <div className="dueDate">{duedate}</div>
-          <div className={priority === "low" ? 'user-task-priority-low' : priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}>{priority}</div>
-          <div className="controls">
-            <button onClick={()=>update(id,projId)}>Done</button>
-            <button>Suggestion</button>
-          </div>
-        </div>
-      );
-    };
-
-     
-
-
-
 
    const navigate = useNavigate()
+
+
+
     return (
       
        <div className="Task">    
@@ -164,9 +152,17 @@ function Task() {
                                                                     
                                        {
                                         task.filter(data => data.assign === userName && data.status != "Done").slice().reverse().map((data) => (
-                                          <TaskComp key={data.id} projId={data.projId}  id={data.id} task={data.details} duedate={data.dueDate.split('T')[0]} priority={data.priority} />
-                                        ))
-
+                                          <div className="user-task">
+                                          <div className={data.priority === "low" ? 'user-task-details-low' : data.priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}>{data.details}</div>
+                                          <div className="dueDate">{data.dueDate}</div>
+                                          <div className={data.priority === "low" ? 'user-task-priority-low' : data.priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}>{data.priority}</div>
+                                          <div className="controls">
+                                          <button  onClick={() => update(data.id,data.projId)} >Done</button>
+                                            <button >Suggestion</button>
+                                          </div>
+                                        </div>
+                                          ))
+                                         
                                        }
                                         
                                     </div>                       
