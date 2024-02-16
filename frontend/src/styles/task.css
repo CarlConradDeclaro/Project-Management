@@ -155,7 +155,10 @@
     max-height: 180px;
      overflow-y: auto;
 }
-
+.task-user-body p{
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
 .task-user-body::-webkit-scrollbar {
     width: 8px; 
     height: 5px;

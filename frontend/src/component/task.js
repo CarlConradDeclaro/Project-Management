@@ -172,8 +172,8 @@ function Task() {
                                        {
                                         task.filter(data => data.assign === userName && data.status != "Done").slice().reverse().map((data) => (
                                           <div className="user-task">
-                                          <div className={data.priority === "low" ? 'user-task-details-low' : data.priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}>{data.details}</div>
-                                          <div className="dueDate">{data.dueDate}</div>
+                                          <div className={data.priority === "low" ? 'user-task-details-low' : data.priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}><p>{data.details}</p></div>
+                                          <div className="dueDate">{data.dueDate.split('T')[0]}</div>
                                           <div className={data.priority === "low" ? 'user-task-priority-low' : data.priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}>{data.priority}</div>
                                           <div className="controls">
                                           <button  onClick={() => update(data.id,data.projId)} >Done</button>
