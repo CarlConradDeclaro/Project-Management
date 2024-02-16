@@ -20,6 +20,7 @@ const SidebarComp = (props)=>{
 
 
      const navigate = useNavigate()
+     
 
 
      axios.defaults.withCredentials= true;
@@ -46,6 +47,9 @@ const SidebarComp = (props)=>{
 const [usename,setUserName] = useState('');
 
 
+
+ 
+
      return(
           <div className="sidebar">   
 
@@ -62,7 +66,7 @@ const [usename,setUserName] = useState('');
 
      <div className='sidebar-oparation'> 
 
-             <Link to='/create' className='dashboard-link'>
+             <Link to='/create' className='dashboard-link' >
                  <div className='dashboard'>                                       
                  <img src={`http://localhost:8000/images/dashboard.png`} /> 
                        <h2>Dashboard</h2>                     
@@ -74,10 +78,11 @@ const [usename,setUserName] = useState('');
              <div className='prroject'>
                      <img src={`http://localhost:8000/images/project.png`} /> 
                        <h2>Project</h2>
+                       
                   </div>
              </Link>
              
-             <Link to='/task' className='task-link'>
+             <Link to='/task' className='task-link' >
                   <div className='task'>
                   <img src={`http://localhost:8000/images/task.png`} /> 
                        <h2>Task</h2>

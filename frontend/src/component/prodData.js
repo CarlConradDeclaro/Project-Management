@@ -67,7 +67,7 @@ function ProductData(){
     };
 
     const  numTask = task.filter( t =>(t.projId == prodId)).length
-
+    const  taskD = task.filter( t =>(t.projId == prodId && t.status === 'done')).length
     const handleSave = () => {
          const taskData = {
             id: prodId,
@@ -76,7 +76,8 @@ function ProductData(){
             status: taskStatus,
             dueDate: taskDueDate,
             numTask: numTask,
-            priority:priority
+            priority:priority,
+            taskDone : taskD
         };
 
         axios.post("http://localhost:8000/create-task", taskData)
@@ -135,23 +136,30 @@ function ProductData(){
     }
 
 
-    function handleDelete (idd){
+    function handleDelete(idd,projIdTD,status){
 
         const id =idd
         const prodIdd =  prodId
         const numTTask = numTask   
-       
+         
+        const val = project.filter(project => project.id == projIdTD)
+        const taskdoneval=  val.map(e => e.taskDone)
 
-            axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}`)
+        //   console.log("task done: "+taskdoneval);
+        //   console.log("task num: "+numTask);
+       
+            axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}/${taskdoneval}/${status}`)
                 .then(response => {
                     console.log("Item deleted successfully");
                     // Perform any necessary UI updates
+                      
                 })
                 .catch(error => {
                     console.error("Error deleting item:", error);
                     // Handle error cases, such as displaying an error message
                 });
-                
+     
+       
     };
     
     const prodDetails = project.filter(project => project.id == prodId);
@@ -353,7 +361,7 @@ function ProductData(){
                                                     prodOwner == user ? 
                                                     <td colSpan="2" className='task-Btn'>
                                                     <button onClick={e => setCreate(false)}>  Update  </button>
-                                                    <button onClick={() => handleDelete(data.id)}>Delete</button>
+                                                    <button onClick={() => handleDelete(data.id,parseInt(prodId) ,data.status)}>Delete</button>
                                                    </td>  
                                                     : 
                                                 //     <td colSpan="2" className='task-Btn'>
