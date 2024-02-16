@@ -204,6 +204,10 @@ app.post('/create-task',(req,res)=>{
     ]; 
 
     const numTask = ++req.body.numTask
+    const taskDone = req.body.taskDone
+
+
+    const status = numTask != taskDone ? 'inprogress':'completed'
     const projId =    req.body.id
 
     db.query(sql, values, (err, data) => {
@@ -212,8 +216,8 @@ app.post('/create-task',(req,res)=>{
             return res.status(500).json({ error: 'Internal Server Error' });
         }
 
-        const sqlUpdate = "UPDATE project SET numTask = ? WHERE id = ?";
-        db.query(sqlUpdate, [numTask, projId], (err, result) => {
+        const sqlUpdate = "UPDATE project SET numTask = ? , status = ? WHERE id = ?";
+        db.query(sqlUpdate, [numTask,status, projId], (err, result) => {
             if (err) {
                 console.error('Error updating numTask:', err);
                 return res.status(500).json({ error: 'Internal Server Error' });
@@ -226,10 +230,18 @@ app.post('/create-task',(req,res)=>{
     });
 })
 app.put('/update-taskDone', (req, res) =>{
+
+
     const taskId = req.body.taskid;
     const taskDone = ++req.body.tskDone
+
+
+    const nTask = req.body.numT;
+    const tDone = ++req.body.taskD
+    const status = nTask == tDone ? 'completed' : 'inprogress'
+
     const sqlUpdate = "UPDATE project SET taskDone = ?, status =? WHERE id = ?";   
-    db.query(sqlUpdate, [taskDone,"inprogress", taskId], (err, result) => {
+    db.query(sqlUpdate, [taskDone,status, taskId], (err, result) => {
         if (err) {
             console.error('Error updating numTask:', err);
             return res.status(500).json({ error: 'Internal Server Error' });
@@ -239,15 +251,23 @@ app.put('/update-taskDone', (req, res) =>{
     });   
 })
 
+
+
+
+
 app.put('/update-task', (req, res) => {
 
     const Id = req.body.id;
+   
+
     const sql = "UPDATE task SET status = 'Done' WHERE id = ?";    
     db.query(sql, Id, (err, data) => {
       if (err) {
         console.error('Error updating task in the database:', err);
         return res.status(500).json({ error: 'Internal Server Error' });
       }
+      console.log('numTask updated successfully');
+      res.json({ message: 'numTask updated successfully' });
     });
   });
 
@@ -272,12 +292,17 @@ app.delete('/task/:id/:numTTask/:projIdd/:taskdoneval/:status', (req, res) => {
 
 
     
-    const td =   req.params.taskdoneval > 0  && req.params.status == 'Done'?  --req.params.taskdoneval : req.params.status === "working" && req.params.status > 0 ? --req.params.numTTask :  req.params.status === 'Done' ? --req.params.taskdoneval:0;
+    const td =   req.params.taskdoneval > 0  && req.params.status == 'Done'?  --req.params.taskdoneval : req.params.taskdoneval;
 
     const numTask = --req.params.numTTask
     const proId =    req.params.projIdd
    
+    const status = req.params.taskdoneval == req.params.numTTask &&  (req.params.taskdoneval == 0 &&  req.params.numTTask  != 0)  ? 'completed' :  req.params.numTTask == 0  ? 'working':'inprogress'
 
+
+
+         console.log("task done: "+td);
+          console.log("task num: "+numTask);
     db.query(sql, [itemId], (err, result) => {
         if (err) {
             console.error('Error deleting item:', err);
@@ -288,13 +313,13 @@ app.delete('/task/:id/:numTTask/:projIdd/:taskdoneval/:status', (req, res) => {
         }
 
 
-        const sqlUpdate = "UPDATE project SET numTask = ?, taskDone=? WHERE id = ?";
-        db.query(sqlUpdate, [numTask,td, proId], (err, result) => {
+        const sqlUpdate = "UPDATE project SET status = ?, numTask = ?, taskDone=? WHERE id = ?";
+        db.query(sqlUpdate, [status,numTask,td, proId], (err, result) => {
             if (err) {
                 console.error('Error updating numTask:', err);
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
-            console.log('numTask updated successfully');
+            console.log('numTask updated successfully' + td + " " +numTask);
             res.json({ message: 'numTask updated successfully and deleted sussecfully' });
         });    
     });

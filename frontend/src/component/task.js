@@ -15,7 +15,7 @@ import axios from "axios";
 function Task() {
 
      const [task,setTask] = useState([])
-    
+     const [project ,setProject] = useState([])
 
      const [userName,setUserName] = useState('') // user name
      
@@ -38,12 +38,22 @@ function Task() {
         .catch(err => console.log(err))
      })
 
-
+      useEffect(()=>{
+          axios.get("http://localhost:8000/project")
+          .then(res => 
+              setProject(res.data)   
+              )
+          .catch(err => console.log(err))
+      })
     
 
    
 
     const  updateTask = (id)=> {  
+
+
+    
+
       
       axios.put('http://localhost:8000/update-task', {id:id})
         .then(res => console.log(res))
@@ -52,15 +62,24 @@ function Task() {
        
     }
     function updateTaskDone(projId) {
-      const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;
-        
-      axios.put('http://localhost:8000/update-taskDone', { taskid: projId, tskDone:taskDone})
+      
+      const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;  
+    
+      const  taskNum = project.filter(p => p.id == projId).map(t => t.numTask)
+      const doneTask = project.filter(p => p.id == projId).map(t => t.taskDone)
+
+     console.log(taskNum);
+     console.log(doneTask);
+
+
+
+      axios.put('http://localhost:8000/update-taskDone', { taskid: projId, tskDone:taskDone,  numT:taskNum,taskD:doneTask})
       .then(res => console.log(res))
       .catch(err => console.error(err));   
     }
 
     function update(id,projId){
-      updateTask(id)
+      updateTask(id,projId)
       updateTaskDone(projId)
     }
 
