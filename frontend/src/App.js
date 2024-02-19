@@ -1,5 +1,6 @@
 
 import Create from "./component/create";
+import Dashboard from "./component/dashboard";
 import Login from "./component/login";
 import ProductData from "./component/prodData";
 import Profile from "./component/profile";
@@ -20,6 +21,7 @@ function App() {
             <Routes>
                <Route path='/' element={<SignIn />} />
                <Route path='/login' element={<Login />} />
+               <Route path='/dashboard' element={<Dashboard />} />  
                <Route path='/project' element={<Projects />} />  
                <Route path='/task' element={<Task />} />            
                <Route path='/project/create/' element={<Create />} /> 

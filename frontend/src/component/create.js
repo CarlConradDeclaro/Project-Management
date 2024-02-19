@@ -125,8 +125,8 @@ function Create() {
 
      return (
       <div className="create-projects">    
-              <Link  to='/project' ><h3>Back</h3></Link>
-              <h2> Create a new Product  </h2>
+              <Link  to='/project' className='back' ><h3>Back</h3></Link>
+              <h2 className='create-project-header'> Create a new Product  </h2>
                   <form  onSubmit={handlSubmit}>
                   
                     <div className='project-datas'>
@@ -156,7 +156,7 @@ function Create() {
 
                                 <div>
                                 <label htmlFor="quantity">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" min="1" max="100" value={quantity} onChange={handleQuantityChange} />
+                              <input type="number" id="quantity" name="quantity" min="1" max="100" value={quantity} onChange={handleQuantityChange} />
                            
                                   
                                 </div>
@@ -212,11 +212,17 @@ function Create() {
                                       /> 
                                       )}
                               </div>
+
+                              <div className='create-controls'>
+                                      <button >Add</button>
+                                      <button >Discard</button>
+                              </div>
                     </div>
 
                     </div>
                     
-                    <button >Add</button>
+                   
+                   
 
                   </form>
          </div>
