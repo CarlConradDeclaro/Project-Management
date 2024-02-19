@@ -114,7 +114,7 @@ function Dashboard(){
                               </div>
 
                               {
-                                project.map((data,i) => (
+                                project.slice().reverse().map((data,i) => (
                                     <div className="dashboard-projects-datas" key={i}>
                                     <div className="project-No"> <p>{++i}</p></div>
                                     <div className="project-name"><p>{data.projectTitle}</p></div>

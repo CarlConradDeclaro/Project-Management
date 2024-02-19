@@ -1,26 +1,42 @@
 .create-projects{
     padding: 20px;
-   
+     background-color: #272638;
+     height: 100vh;
+     color: white;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.back{
+    color: white;
+}
+.create-project-header{
+   color: white;
 }
  .inputsFields1 {
-    display: flex;
-    flex-direction: column;
-     background-color: #ffffff;
-     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
-     border-radius: 10px;
+      display: flex;
+     flex-direction: column;
+      
+      border-radius: 10px;
      width: 45%;
      padding: 20px;
  }
-
+ .inputsFields1 label{
+   font-weight: 700;
+   font-size: 20px;
+ }
  .inputsFields1 input,textarea{
-    border-radius: 8px;
+   font-size: 18px;
     outline: none;
-    border: solid 2px gray;
+    border: none;
     height: 30px; 
     margin: 10px;
+    color: white;
+    background-color: #272638;
+    border-bottom: 2px solid gray;
+    cursor: pointer;
   }
+  
   .inputsFields1  .desc{
-    height: 100px;
+    height: 50px;
   }
  .project-datas{
     display: flex;
@@ -29,16 +45,14 @@
  }
 
  .inputsFields2{
-   display: flex;
-    
-   align-items: center;
-    flex-direction: column;
-     background-color: #ffffff;
-     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
-     border-radius: 10px;
+     display: flex; 
+     align-items: center;
+     flex-direction: column;  
+      border-radius: 10px;
      width: 25%;
-      height: 400px;
+      height: auto;
      padding: 20px;
+    
 }
 .project-photo{
    display: flex;
@@ -78,27 +92,40 @@
     align-items: center;
     flex-wrap: wrap;
     gap: .5em;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
  }
-
+ .tag-item{
+   padding: 10px;
+ }
  .tag-item, .tag-member{
-   background-color: #090b0c;
+   background-color: #43256ebd;
    display: inline-block;
-   padding: .5em .75em;
+   padding: 5px;
    border-radius: 20px;
-   margin: 5px;
+   margin-bottom: 5px;
    color: #ffffff;
+   font-weight: 500;
+   margin: 10px 0px 10px 10px;
+ }
+ 
+ .tag-member .text{
+   
+   font-size: 25px;
+   font-weight: 800;
  }
 
  .tag-item .close, .tag-member .close{
    height: 20px;
    width: 20px;
    background-color: gray; 
-   color: whitesmoke;
+   
    border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  margin-left: .5em;
-  cursor: pointer;
+   display: inline-flex;
+   justify-content: center;
+   margin-left: .5em;
+   cursor: pointer;
  }
 
 .tags .tags-input {
@@ -106,9 +133,18 @@ flex-grow: 1;
 padding: .5em 0;
 border: none;
 outline: none;
+background-color: #272638;
+color: white;
+font-size: 13px ;
+font-weight: 800;
  }
 
-
+.tag-item .text{
+  
+font-weight: 800;
+   font-size: 25px;
+   padding: 10px;
+}
  .members{
    border: solid 2px gray;
    border-radius: 10px;
@@ -124,10 +160,45 @@ outline: none;
    padding: .5em 0;
    border: none;
    outline: none;
+   color: white;
+   font-size: 13px ;
+   font-weight: 800;
 }
 
 .quantityOfMem{
    display: flex;
    justify-content: space-between;
-  
+   
+}
+ 
+.create-controls {
+   margin-top: 50px;
+}
+ 
+.create-controls button{
+    width: 100px;
+     margin: 10px;
+     height: 30px;
+      cursor: pointer;
+     border-radius: 10px;   
+}
+.create-controls button:nth-child(1){
+   background-color: #312E3D;
+   color: white;
+   font-size: 18px;
+}
+.create-controls button:nth-child(1):hover{
+   background-color: #08f91c;
+   color: rgb(0, 0, 0);
+   font-size: 18px;
+}
+.create-controls button:nth-child(2){
+   background-color: #CACACA;
+   color: rgb(0, 0, 0);
+   font-size: 18px;
+}
+.create-controls button:nth-child(2):hover{
+   color: rgb(255, 251, 251);
+   font-size: 18px;
+   background-color:red ;
 }
