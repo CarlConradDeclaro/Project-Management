@@ -66,7 +66,7 @@ const [usename,setUserName] = useState('');
 
      <div className='sidebar-oparation'> 
 
-             <Link to='/create' className='dashboard-link' >
+             <Link to='/dashboard' className='dashboard-link' >
                  <div className='dashboard'>                                       
                  <img src={`http://localhost:8000/images/dashboard.png`} /> 
                        <h2>Dashboard</h2>                     
