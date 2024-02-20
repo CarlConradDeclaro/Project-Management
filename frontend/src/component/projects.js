@@ -6,29 +6,30 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css' 
+import { useProject } from "../projectDatas";
  
 const Project = (props) => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+      const navigate = useNavigate();
+      const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 600);
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 600);
 
-    return () => clearTimeout(timer);
-  }, []);
+        return () => clearTimeout(timer);
+      }, []);
 
-  const tagsArray = JSON.parse(props.tags);
+      const tagsArray = JSON.parse(props.tags);
 
-  function handleProjectClick() {
-    navigate(`/project/${props.id}/${props.owner}`);
-  }
+      function handleProjectClick() {
+        navigate(`/project/${props.id}/${props.owner}`);
+      }
 
-  const desc = props.description;
-  const projectDetailsTrim = desc.length > 100 ? desc.substring(0, 100) + "..." : desc;
+      const desc = props.description;
+      const projectDetailsTrim = desc.length > 100 ? desc.substring(0, 100) + "..." : desc;
 
-  
+      
 
   return (
     <>
@@ -106,11 +107,8 @@ const ProductLoading=()=>{
 
 function Projects() {
 
-  const navigate = useNavigate()
-
-    const [projectData,setProjectData] = useState([]);
-     
-
+    const navigate = useNavigate()
+    const projectData = useProject() 
     const [auth,setAuth] = useState(false)
     const [name,setName] =useState("")
     const [userId,setUserId] = useState('')
@@ -120,16 +118,9 @@ function Projects() {
     const number_progress = projectData.filter(data=> (data.status === "inprogress") && (data.owner === userId || data.members.includes(name))).length
     const number_completed = projectData.filter(data=> (data.status === "completed") && (data.owner === userId || data.members.includes(name))).length
 
-   
-     
-     useEffect(()=>{
-        axios.get("http://localhost:8000/project")
-        .then(res => setProjectData(res.data))
-        .catch(err => console.log(err))
-      
-    },[])
-  
- 
+
+
+    
     axios.defaults.withCredentials = true;
     useEffect(() => {
       axios.get('http://localhost:8000')
@@ -138,22 +129,17 @@ function Projects() {
             setAuth(true);
             setUserId(res.data.id);
             setName(res.data.name)
-            console.log(res.data.id + " from project"); // Log the name from the response data
+            console.log(res.data.id + " from project");  
           } else {
             setAuth(false);
           }
         })
-        .catch(err => console.log(err)); // Add error handling here
-    }, []);
+        .catch(err => console.log(err));  
+    });
     
-    
-
- function handleProfile(){
-   navigate('/profile')
- }
-
-  
-
+    function handleProfile(){
+      navigate('/profile')
+    }
 
     return (
       <div className="projects-sidebar">        

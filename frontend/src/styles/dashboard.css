@@ -1,5 +1,5 @@
 .Dashboard{
-      display: flex;
+    display: flex;
     width: 100%;
     color: white;
     background-color: #272638;
@@ -104,12 +104,8 @@
 
 .dashboard-project-controls{
     width: 20%;
-   
 }
  
-.dashboard-project div:first-child{
-    margin-bottom: 10px;
-}
 
 .dashboard-project-controls div  {
     display: flex;
@@ -242,7 +238,7 @@
  }
  .dashboard-projects-datas div:nth-child(4){
     width: 15%;
-    
+  
  }
  .dashboard-projects-datas div:nth-child(5){
     width: 10%;
@@ -260,3 +256,59 @@
     width: 5%;
    
  }  
+
+ .project-display{  
+    height: 40vh;
+    overflow-y: auto;
+    cursor: pointer;
+ }
+
+ .project-display::-webkit-scrollbar ,.product-inprogress-loading::-webkit-scrollbar, .product-completed-loading::-webkit-scrollbar{
+    width: 6px; /* Set the width of the scrollbar */
+    
+}
+  
+  .project-display::-webkit-scrollbar-thumb ,   .product-inprogress-loading::-webkit-scrollbar-thumb ,.product-completed-loading::-webkit-scrollbar-thumb    {
+    background-color: #999; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+  }
+
+
+
+
+
+ 
+
+
+  .project-Teams-member {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 0 auto;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-Teams-member img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: -10px; /* Adjust negative margin to overlay images */
+    position: relative;
+    z-index: 1; /* Ensure images are above the overlay */
+}
+
+.text {
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: black;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2; /* Ensure overlay is above the images */
+}

@@ -4,66 +4,35 @@ import {useParams ,useLocation, Link, Navigate, useNavigate} from 'react-router-
 import Sidebar  from "./sidebar";
 import '../styles/prodData.css'
 import axios from 'axios';
- 
+import { useTask, useProject,useUserName, useUserId } from "../projectDatas";
 
- 
 
 
 function ProductData(){
   
-    const navigate = useNavigate()
-    
-    const {id,owner} = useParams()
-    
+    const navigate = useNavigate()  
+    const {id,owner} = useParams()   
     const [prodId,setProdId] = useState(null); // project id 
-    
     const [prodOwner,setProdOwner] = useState(null); // project owener id
-    const [user,setUser] =useState('') // userId
-    const [userName,setUserName] = useState('') // user name
- 
-  
-    const location = useLocation()
-
+    const user = useUserId() // userId
+    const userName = useUserName() // user name
     const [taskDetails, setTaskDetails] = useState('');
     const [taskAssign, setTaskAssign] = useState('');
     const [taskStatus, setTaskStatus] = useState('working');
     const [taskDueDate, setTaskDueDate] = useState('');
     const [priority,setPriority] = useState("low");
-
-     const [members,setMembers] = useState([])
-    const [task,setTask] =useState([])
-
-    const [project,setProject] = useState([])
-  
-     useEffect(()=>{
+    const [members,setMembers] = useState([])  
+    const task = useTask()
+    const project = useProject()
+    const [create,setCreate] = useState(false)
+     
+    useEffect(()=>{
         setProdId(id);
-        setProdOwner(owner)
-       
-        
+        setProdOwner(owner)   
     })
 
-    axios.defaults.withCredentials = true;
-    useEffect(() => {
-      axios.get('http://localhost:8000')
-        .then(res => {
-          if (res.data.Status === "Success") {    
-            setUser(res.data.id);
-            setUserName(res.data.name)
-           }  
-        })
-        .catch(err => console.log(err)); // Add error handling here
-    }, []);
-
-
-
-
-
-
-     const [create,setCreate] = useState(false)
-
     const createTask = () => {
-       setCreate(true)
-           
+       setCreate(true)      
     };
 
     const  numTask = task.filter( t =>(t.projId == prodId)).length
@@ -86,36 +55,14 @@ function ProductData(){
         })
         .catch(err => console.log(err));
 
-     
-         // Reset form fields
-        setTaskDetails('');
+         setTaskDetails('');
          setTaskStatus('working');
-        setTaskDueDate('');
-        setCreate(false)
-        setMembers([])
+         setTaskDueDate('');
+         setCreate(false)
+         setMembers([])
       };
 
-
-   
-
-    useEffect(()=>{
-        axios.get("http://localhost:8000/project")
-        .then(res => 
-            setProject(res.data)   
-            )
-        .catch(err => console.log(err))
-    })
-
-
-    useEffect(()=>{
-        axios.get("http://localhost:8000/getTask")
-        .then(res => setTask(res.data))
-        .catch(err => console.log(err))
-    })
-  
-
     function handleKeyDownAssign(e){
-
         if(e.key !== 'Enter') return
         const val = project.find(u => u.members.includes(e.target.value) )
          if(val || userName == e.target.value){     
@@ -125,10 +72,7 @@ function ProductData(){
         }else{
           console.log('User '+e.target.value + ' not Found!');
         }   
-        e.target.value=''
-        
-    
-       
+        e.target.value=''   
     }
  
     function removeMem(index){
@@ -137,46 +81,31 @@ function ProductData(){
 
 
     function handleDelete(idd,projIdTD,status){
-
         const id =idd
         const prodIdd =  prodId
-        const numTTask = numTask   
-         
+        const numTTask = numTask           
         const val = project.filter(project => project.id == projIdTD)
         const taskdoneval=  val.map(e => e.taskDone)
 
-        //   console.log("task done: "+taskdoneval);
-        //   console.log("task num: "+numTask);
-       
             axios.delete(`http://localhost:8000/task/${id}/${numTTask}/${prodIdd}/${taskdoneval}/${status}`)
                 .then(response => {
-                    console.log("Item deleted successfully");
-                    // Perform any necessary UI updates
-                      
+                    console.log("Item deleted successfully");                
                 })
                 .catch(error => {
-                    console.error("Error deleting item:", error);
-                    // Handle error cases, such as displaying an error message
-                });
-     
-       
+                    console.error("Error deleting item:", error);                
+                });       
     };
     
     const prodDetails = project.filter(project => project.id == prodId);
     const projectTitles = prodDetails.map(project => project.projectTitle);
     let projectDetails = prodDetails.map(project => project.description);
 
-      
-
-    function handleDeleteProj(){
-          
+    function handleDeleteProj(){     
         axios.delete(`http://localhost:8000/project-delete/${prodId}`)
         .then(res =>{            
             navigate('/project');
                 console.log("Project deleted");
-        }).catch(err => console.log(err))
-
-       
+        }).catch(err => console.log(err))    
     }
 
     return(
@@ -184,7 +113,6 @@ function ProductData(){
              <Sidebar   /> 
                <div  className='prodData-content'>
                         
-
                     <div className='prodData-header'>
 
                            <div className='prodData-title'>

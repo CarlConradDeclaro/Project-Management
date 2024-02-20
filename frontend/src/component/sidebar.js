@@ -4,64 +4,32 @@ import '../styles/sidebar.css'
 import axios from 'axios';
 import { useLocation , useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useUserName } from '../projectDatas';
 
-
-
-
-
-
-
-
-
-
-  
 
 const SidebarComp = (props)=>{
 
 
      const navigate = useNavigate()
+     const usename  = useUserName()
      
 
-
-     axios.defaults.withCredentials= true;
-     useEffect(()=>{
-          axios.get('http://localhost:8000')
-          .then(res=>{
-                    setUserName(res.data.name)
-          }).catch(err => console.log(err))
-     },[])
-     
-     
      const handleDelete=()=>{
           axios.get('http://localhost:8000/logout')
           .then(res =>{        
              navigate('/login')
           }).catch(err => console.log(err))
        }
-     
-       const location  = useLocation()
-     
 
-
-
-const [usename,setUserName] = useState('');
-
-
-
- 
 
      return(
           <div className="sidebar">   
+               <div className='sidebar-username'>
+               <div className='User'>
+                    <h2>{usename.toUpperCase()}</h2> 
+               </div>
 
-    
-
-     <div className='sidebar-username'>
-
-        <div className='User'>
-             <h2>{usename.toUpperCase()}</h2> 
-        </div>
-
-     </div>
+               </div>
 
 
      <div className='sidebar-oparation'> 
@@ -89,7 +57,7 @@ const [usename,setUserName] = useState('');
                   </div>
              </Link>
         
-             <Link to='/reports' className='reports-link'>
+             <Link to='/report' className='reports-link'>
                   <div className='reports'>
                   <img src={props.dashboard}/>
                        <h2>Reports</h2>
@@ -104,11 +72,7 @@ const [usename,setUserName] = useState('');
              <div className='logOut'>
                   <button onClick={handleDelete}>Logout</button>
              </div>
-
-     </div>
-     
-     
-     
+     </div>    
 </div>
      )
 }

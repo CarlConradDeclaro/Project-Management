@@ -5,26 +5,22 @@ import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
+import { useTask, useProject, useUsers } from "../projectDatas";
 
 function Dashboard(){
 
     const navigate = useNavigate()
+    const project = useProject();
 
 
-    const [project ,setProject] = useState([])
+    const users = useUsers();
 
-    function GetProjects(){ 
-        useEffect(()=>{
-            axios.get("http://localhost:8000/project")
-            .then(res => 
-                setProject(res.data)   
-                )
-            .catch(err => console.log(err))
-        })
+ 
+    function getAssignee(id){
+       const name =  users.filter(u => u.id == id).map(name => name.name) 
+       return name;
     }
-    GetProjects();
-    
+   
 
     return(
 
@@ -113,22 +109,30 @@ function Dashboard(){
                                          <div><p>Action</p></div>
                               </div>
 
-                              {
+                            <div className="project-display">
+                              {                               
                                 project.slice().reverse().map((data,i) => (
                                     <div className="dashboard-projects-datas" key={i}>
                                     <div className="project-No"> <p>{++i}</p></div>
                                     <div className="project-name"><p>{data.projectTitle}</p></div>
-                                    <div className="project-assignedBy"><p>Carl Conrad</p></div>
-                                    <div className="project-Teams-member"> </div>
-                                    <div className="project-Assigned-Date"><p>25/10/2024</p></div>
-                                    <div className="project-DueDate"><p>29/10/2024</p></div>
-                                    <div className="project-Priority"><p>Medium</p> </div>
+                                    <div className="project-assignedBy"><p>{getAssignee(data.owner)}</p></div>
+                                    <div className="project-Teams-member">
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                         <p className='text' >+5</p>            
+                                    </div>
+                                    <div className="project-Assigned-Date"><p>{data.assignedDate.split('T')[0]}</p></div>
+                                    <div className="project-DueDate"><p>{data.duedate.split('T')[0]}</p></div>
+                                    <div className="project-Priority"><p>{data.priority}</p> </div>
                                     <div className="project-Action"> <p>View</p></div>
                                     </div>
-                                ))
+                                ))       
                               }
 
-                            
+                          </div> 
 
                            
 

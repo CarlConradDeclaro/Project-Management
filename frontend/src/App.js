@@ -8,6 +8,7 @@ import Projects from "./component/projects";
 import Sidebar  from "./component/sidebar";
 import SignIn from "./component/signIn";
 import Task from "./component/task";
+import Report from "./component/report";
 import './styles/app.css'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
@@ -27,6 +28,7 @@ function App() {
                <Route path='/project/create/' element={<Create />} /> 
                <Route path='/project/:id/:owner' element={<ProductData />} /> 
                <Route path='/profile' element={<Profile />} /> 
+               <Route path='/report' element={<Report />} /> 
             </Routes>         
         </BrowserRouter>      
     </div>

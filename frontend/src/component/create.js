@@ -17,7 +17,9 @@ function Create() {
   const [users,setUsers] = useState([])
   const [name,setName] = useState("")
   const [id,setId] = useState("")
+  const [dueDate,setDueDate] = useState()
   const [quantity, setQuantity] = useState(1);
+  const [priority,setPriority] = useState("")
  
 
 
@@ -45,7 +47,7 @@ function Create() {
 
   function handlSubmit(event) {
     event.preventDefault();
-    
+    const assigedDate = new Date().toISOString().slice(0, 10)
     const formData = new FormData();
     formData.append('id', id);
     formData.append('title', title);
@@ -54,8 +56,11 @@ function Create() {
     formData.append('file', file);
     formData.append('tags', JSON.stringify(tags));
     formData.append('members', JSON.stringify(members));
+    formData.append('dueDate',dueDate);
+    formData.append('assigedDate',assigedDate);
+    formData.append('priority',priority);
 
-
+    
     axios.post("http://localhost:8000/create", formData)
         .then(res => {
             navigate("/project");
@@ -141,9 +146,11 @@ function Create() {
                            <textarea className='desc' name="desc" placeholder="Description" required
                            onChange={e => setDescription(e.target.value)}  
                            ></textarea>
-
-                           <select onChange={e => setStatus(e.target.value)} className='status' required>
-                              <option value="">Select a Status</option>
+                           <label htmlFor='duedate'>Set Deadline:</label>
+                           <input  type='date'  name='duedate' required  onChange={e =>setDueDate(e.target.value) }/>
+                          <label htmlFor='status'>Status:</label>
+                            <select name='status' onChange={e => setStatus(e.target.value)} className='status' required>                        
+                           <option value="">Select</option>
                               <option value="working">Working</option>
                               <option value="inprogress">In Progress</option>
                               <option value="completed">Completed</option>
@@ -191,6 +198,13 @@ function Create() {
                                      <img src={imagePreview}  />
                               </div>
 
+                            <label htmlFor='priority'>Priority:</label>
+                            <select name='priority' onChange={e => setPriority(e.target.value)} className='status' required>                        
+                              <option value="">Select</option>
+                              <option value="low">Low</option>
+                              <option value="medium">Medium</option>
+                              <option value="high">High</option>
+                            </select> 
                               <h3>Enter some tags ({numtags}/2) </h3>
                               <div className='tags'>
                                     
