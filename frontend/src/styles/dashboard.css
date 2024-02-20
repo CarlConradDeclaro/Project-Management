@@ -104,12 +104,8 @@
 
 .dashboard-project-controls{
     width: 20%;
-   
 }
  
-.dashboard-project div:first-child{
-    margin-bottom: 10px;
-}
 
 .dashboard-project-controls div  {
     display: flex;
@@ -260,3 +256,19 @@
     width: 5%;
    
  }  
+
+ .project-display{  
+    height: 40vh;
+    overflow-y: auto;
+    cursor: pointer;
+ }
+
+ .project-display::-webkit-scrollbar ,.product-inprogress-loading::-webkit-scrollbar, .product-completed-loading::-webkit-scrollbar{
+    width: 6px; /* Set the width of the scrollbar */
+    
+}
+  
+  .project-display::-webkit-scrollbar-thumb ,   .product-inprogress-loading::-webkit-scrollbar-thumb ,.product-completed-loading::-webkit-scrollbar-thumb    {
+    background-color: #999; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+  }

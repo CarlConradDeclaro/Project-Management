@@ -139,7 +139,7 @@ app.post('/login', (req, res) => {
 
 
 app.post('/create', upload.single('file'), (req, res) => {
-    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags,owner,members) VALUES (?, ?,?, ?,?,?,?)";
+    const sqlQuery = "INSERT INTO project (projectTitle, description, image, status,tags,owner,members,duedate,assignedDate,priority) VALUES (?,?, ?,?, ?,?,?,?,?,?)";
     const values = [
         req.body.title,
         req.body.description,
@@ -147,7 +147,10 @@ app.post('/create', upload.single('file'), (req, res) => {
         req.body.status,
         req.body.tags,
         req.body.id,
-        req.body.members
+        req.body.members,
+        req.body.dueDate,
+        req.body.assigedDate,
+        req.body.priority
     ];    
     db.query(sqlQuery, values, (err, data) => {
         if (err) {

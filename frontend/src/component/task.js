@@ -5,77 +5,33 @@ import '../styles/task.css'
 import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useTask, useProject,useUserName } from "../projectDatas";
  
-
-
 
 
   
 function Task() {
 
-     const [task,setTask] = useState([])
-     const [project ,setProject] = useState([])
+     const navigate = useNavigate()
+     const task = useTask()
+     const project = useProject()
+     const userName = useUserName();
 
-     const [userName,setUserName] = useState('') // user name
-     
-
-     axios.defaults.withCredentials = true;
-     useEffect(() => {
-       axios.get('http://localhost:8000')
-         .then(res => {
-           if (res.data.Status === "Success") {     
-             setUserName(res.data.name)
-            }  
-         })
-         .catch(err => console.log(err)); // Add error handling here
-     }, []);
-
-
-     useEffect(()=>{
-        axios.get('http://localhost:8000/getTask')
-        .then(res=> setTask(res.data))
-        .catch(err => console.log(err))
-     })
-
-      useEffect(()=>{
-          axios.get("http://localhost:8000/project")
-          .then(res => 
-              setProject(res.data)   
-              )
-          .catch(err => console.log(err))
-      })
-    
-
-   
 
     const  updateTask = (id)=> {  
-
-
-    
-
-      
       axios.put('http://localhost:8000/update-task', {id:id})
         .then(res => console.log(res))
-        .catch(err => console.error(err));
-      
-       
+        .catch(err => console.error(err));  
     }
+
     function updateTaskDone(projId) {
-      
-      const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;  
-    
-      const  taskNum = project.filter(p => p.id == projId).map(t => t.numTask)
-      const doneTask = project.filter(p => p.id == projId).map(t => t.taskDone)
+        const taskDone = task.filter(t => (t.projId === projId && t.status === "Done")).length;  
+        const  taskNum = project.filter(p => p.id == projId).map(t => t.numTask)
+        const doneTask = project.filter(p => p.id == projId).map(t => t.taskDone) 
 
-     console.log(taskNum);
-     console.log(doneTask);
-
-
-
-      axios.put('http://localhost:8000/update-taskDone', { taskid: projId, tskDone:taskDone,  numT:taskNum,taskD:doneTask})
-      .then(res => console.log(res))
-      .catch(err => console.error(err));   
+        axios.put('http://localhost:8000/update-taskDone', { taskid: projId, tskDone:taskDone,  numT:taskNum,taskD:doneTask})
+        .then(res => console.log(res))
+        .catch(err => console.error(err));   
     }
 
     function update(id,projId){
@@ -85,17 +41,11 @@ function Task() {
 
 
 
-   const navigate = useNavigate()
-
-
-
+ 
     return (
       
        <div className="Task">    
            <Sidebar/>  
-
-
-            
              <div className="task-content">
                          <div className="task-content-header">
                                 <div className="task-content-search">
@@ -172,13 +122,13 @@ function Task() {
                                        {
                                         task.filter(data => data.assign === userName && data.status != "Done").slice().reverse().map((data) => (
                                           <div className="user-task">
-                                          <div className={data.priority === "low" ? 'user-task-details-low' : data.priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}><p>{data.details}</p></div>
-                                          <div className="dueDate">{data.dueDate.split('T')[0]}</div>
-                                          <div className={data.priority === "low" ? 'user-task-priority-low' : data.priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}>{data.priority}</div>
-                                          <div className="controls">
-                                          <button  onClick={() => update(data.id,data.projId)} >Done</button>
-                                            <button >Suggestion</button>
-                                          </div>
+                                              <div className={data.priority === "low" ? 'user-task-details-low' : data.priority === 'medium' ? 'user-task-details-medium' : 'user-task-details-high'}><p>{data.details}</p></div>
+                                              <div className="dueDate">{data.dueDate.split('T')[0]}</div>
+                                              <div className={data.priority === "low" ? 'user-task-priority-low' : data.priority === 'medium' ? 'user-task-priority-medium' : 'user-task-priority-high'}><p>{data.priority}</p></div>
+                                              <div className="controls">
+                                              <button  onClick={() => update(data.id,data.projId)} >Done</button>
+                                                <button >Suggestion</button>
+                                              </div>
                                         </div>
                                           ))
                                          
@@ -189,7 +139,7 @@ function Task() {
 
                             
 
-                          <div className="task-missed-table">
+                          {/* <div className="task-missed-table">
  
                                 <h2>Missed:</h2> 
                                       
@@ -200,7 +150,7 @@ function Task() {
                                     </div>     
 
                                       
-                          </div>  
+                          </div>   */}
      
               </div>
                      
