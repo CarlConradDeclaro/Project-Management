@@ -116,7 +116,14 @@ function Dashboard(){
                                     <div className="project-No"> <p>{++i}</p></div>
                                     <div className="project-name"><p>{data.projectTitle}</p></div>
                                     <div className="project-assignedBy"><p>{getAssignee(data.owner)}</p></div>
-                                    <div className="project-Teams-member"> </div>
+                                    <div className="project-Teams-member">
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                        <img src={`http://localhost:8000/images/nft.jpg`} />
+                                         <p className='text' >+5</p>            
+                                    </div>
                                     <div className="project-Assigned-Date"><p>{data.assignedDate.split('T')[0]}</p></div>
                                     <div className="project-DueDate"><p>{data.duedate.split('T')[0]}</p></div>
                                     <div className="project-Priority"><p>{data.priority}</p> </div>

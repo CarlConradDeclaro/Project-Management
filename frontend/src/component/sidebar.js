@@ -57,7 +57,7 @@ const SidebarComp = (props)=>{
                   </div>
              </Link>
         
-             <Link to='/reports' className='reports-link'>
+             <Link to='/report' className='reports-link'>
                   <div className='reports'>
                   <img src={props.dashboard}/>
                        <h2>Reports</h2>

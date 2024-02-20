@@ -118,6 +118,9 @@ function Projects() {
     const number_progress = projectData.filter(data=> (data.status === "inprogress") && (data.owner === userId || data.members.includes(name))).length
     const number_completed = projectData.filter(data=> (data.status === "completed") && (data.owner === userId || data.members.includes(name))).length
 
+
+
+    
     axios.defaults.withCredentials = true;
     useEffect(() => {
       axios.get('http://localhost:8000')
