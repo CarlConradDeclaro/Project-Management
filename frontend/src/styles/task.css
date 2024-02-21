@@ -14,6 +14,12 @@
     
 }
  
+.task-content-profile{
+    background-color:rgba(255, 255, 255, 0.852);
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
  
 .task-table{
     margin: 0px auto 0 auto;
@@ -37,9 +43,7 @@
     border-bottom: 1px solid gray;
     margin: 10px;
 }
-.task-content-header img{
-    margin-left: 12px;
-}
+ 
 
 .user-task-header, .user-task{
     display: flex;

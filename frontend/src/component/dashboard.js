@@ -5,14 +5,13 @@ import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useTask, useProject, useUsers } from "../projectDatas";
+import { useTask, useProject, useUsers,useUserId } from "../projectDatas";
 
 function Dashboard(){
 
     const navigate = useNavigate()
     const project = useProject();
-
-
+    const userId = useUserId()
     const users = useUsers();
 
  
@@ -20,7 +19,9 @@ function Dashboard(){
        const name =  users.filter(u => u.id == id).map(name => name.name) 
        return name;
     }
-   
+
+ 
+
 
     return(
 
@@ -29,7 +30,11 @@ function Dashboard(){
                 <Sidebar / >
 
             <div className="dashboard-content"> 
-                        <div className="dashboard-content-header">
+                      
+                      
+                      
+                      
+            <div className="dashboard-content-header">
                                             <div className="dashboard-content-search">
                                                     {/* <input type="text" placeholder="search"></input>                 */}
                                             </div>
@@ -39,7 +44,17 @@ function Dashboard(){
                                                 
                                                     
                                                     <div className="profile" onClick={e => navigate('/profile')}>
-                                                            <img src="../nft.jpg"  />
+                                                    {
+                                                        users
+                                                        .filter(user => user.id === parseInt(userId))
+                                                        .map(user => (
+                                                            <img
+                                                                key={user.id} 
+                                                                src={`http://localhost:8000/images/${user.img}`}
+                                                                alt="pp"
+                                                            />
+                                                        ))
+                                                    }
                                                             <div class="dropdown"  >
                                                                 
                                                                 <div class="dropdown-content">
@@ -52,6 +67,23 @@ function Dashboard(){
                                                     </div>                 
                                     </div>
                          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                          <h1 className="project-summary-title">Project summary</h1>
                          <div className="project-summary">
@@ -110,27 +142,33 @@ function Dashboard(){
                               </div>
 
                             <div className="project-display">
-                              {                               
-                                project.slice().reverse().map((data,i) => (
+                            {
+                                project.slice().reverse().map((data, i) => (
                                     <div className="dashboard-projects-datas" key={i}>
-                                    <div className="project-No"> <p>{++i}</p></div>
-                                    <div className="project-name"><p>{data.projectTitle}</p></div>
-                                    <div className="project-assignedBy"><p>{getAssignee(data.owner)}</p></div>
-                                    <div className="project-Teams-member">
-                                        <img src={`http://localhost:8000/images/nft.jpg`} />
-                                        <img src={`http://localhost:8000/images/nft.jpg`} />
-                                        <img src={`http://localhost:8000/images/nft.jpg`} />
-                                        <img src={`http://localhost:8000/images/nft.jpg`} />
-                                        <img src={`http://localhost:8000/images/nft.jpg`} />
-                                         <p className='text' >+5</p>            
+                                        <div className="project-No"> <p>{++i}</p></div>
+                                        <div className="project-name"><p>{data.projectTitle}</p></div>
+                                        <div className="project-assignedBy"><p>{getAssignee(data.owner)}</p></div>
+                                        <div className="project-Teams-member">
+                                            {
+                                                JSON.parse(data.members).slice(0,5).filter(memberName => 
+                                                  users.find(user => user.name === memberName)   
+                                                ).map((memberName, index) => {
+                                                    const matchingUser = users.find(user => user.name === memberName);
+                                                    return <img key={index} src={`http://localhost:8000/images/${matchingUser.img}`} />;
+                                                })
+                                            }
+                                            {
+                                                JSON.parse(data.members).length > 5 && <p className='text'>{JSON.parse(data.members).length - 5}+</p>
+                                            }
+                                        </div>
+                                        <div className="project-Assigned-Date"><p>{data.assignedDate.split('T')[0]}</p></div>
+                                        <div className="project-DueDate"><p>{data.duedate.split('T')[0]}</p></div>
+                                        <div className="project-Priority"><p>{data.priority}</p></div>
+                                        <div className="project-Action"> <p>View</p></div>
                                     </div>
-                                    <div className="project-Assigned-Date"><p>{data.assignedDate.split('T')[0]}</p></div>
-                                    <div className="project-DueDate"><p>{data.duedate.split('T')[0]}</p></div>
-                                    <div className="project-Priority"><p>{data.priority}</p> </div>
-                                    <div className="project-Action"> <p>View</p></div>
-                                    </div>
-                                ))       
-                              }
+                                ))
+                            }
+
 
                           </div> 
 

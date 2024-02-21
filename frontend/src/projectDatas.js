@@ -39,7 +39,7 @@ export const useUserName = ()=>{
             }  
          })
          .catch(err => console.log(err)); // Add error handling here
-     });
+     },[]);
    return userName;
 }
 
@@ -54,7 +54,7 @@ export const useUserId = ()=>{
             }  
          })
          .catch(err => console.log(err)); // Add error handling here
-     });
+     },[]);
    return userId;
 }
 
@@ -69,7 +69,8 @@ export const useUsers = () =>{
       })
       .catch(err => console.log(err)); // Add error handling here
   
-    })
+    },[])
     console.log('w');
     return users
 }
+ 
