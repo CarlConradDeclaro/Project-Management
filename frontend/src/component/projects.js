@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css' 
-import { useProject } from "../projectDatas";
+import { useProject, useUsers } from "../projectDatas";
  
 const Project = (props) => {
       const navigate = useNavigate();
@@ -112,6 +112,8 @@ function Projects() {
     const [auth,setAuth] = useState(false)
     const [name,setName] =useState("")
     const [userId,setUserId] = useState('')
+    const users =useUsers();
+
 
  
     const number_working = projectData.filter(data => (data.status === "working") && (data.owner === userId || data.members.includes(name))).length;
@@ -163,7 +165,17 @@ function Projects() {
                              
                                  
                                  <div className="profile" onClick={e => navigate('/profile')}>
-                                        <img src="../nft.jpg"  />
+                                                     {
+                                                        users
+                                                        .filter(user => user.id === parseInt(userId))
+                                                        .map(user => (
+                                                            <img
+                                                                key={user.id} 
+                                                                src={`http://localhost:8000/images/${user.img}`}
+                                                                alt="pp"
+                                                            />
+                                                        ))
+                                                    }              
                                         <div class="dropdown"  >
                                            
                                             <div class="dropdown-content">

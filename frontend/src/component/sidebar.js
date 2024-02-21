@@ -4,15 +4,23 @@ import '../styles/sidebar.css'
 import axios from 'axios';
 import { useLocation , useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useUserName } from '../projectDatas';
+import { useUserId, useUserName, useUsers } from '../projectDatas';
 
 
 const SidebarComp = (props)=>{
 
 
      const navigate = useNavigate()
-     const usename  = useUserName()
-     
+
+     const getUserId = useUserId();
+     const getUserName  = useUsers()
+
+     //const  usename  = getUserName.filter(n => n.id == getUserId).map(name => name.name.toUpperCase())
+     const  usename = ''
+         
+
+        
+
 
      const handleDelete=()=>{
           axios.get('http://localhost:8000/logout')
@@ -26,7 +34,7 @@ const SidebarComp = (props)=>{
           <div className="sidebar">   
                <div className='sidebar-username'>
                <div className='User'>
-                    <h2>{usename.toUpperCase()}</h2> 
+                    <h2>{usename}</h2> 
                </div>
 
                </div>

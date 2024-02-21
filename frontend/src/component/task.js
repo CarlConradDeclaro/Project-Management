@@ -5,7 +5,7 @@ import '../styles/task.css'
 import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useTask, useProject,useUserName } from "../projectDatas";
+import { useTask, useProject,useUserName, useUserId, useUsers } from "../projectDatas";
  
 
 
@@ -16,6 +16,9 @@ function Task() {
      const task = useTask()
      const project = useProject()
      const userName = useUserName();
+     const userId = useUserId()
+     const users = useUsers();
+ 
 
 
     const  updateTask = (id)=> {  
@@ -57,7 +60,17 @@ function Task() {
                                       
                                           
                                           <div className="profile" onClick={e => navigate('/profile')}>
-                                                  <img src="../nft.jpg"  />
+                                               {
+                                                        users
+                                                        .filter(user => user.id === parseInt(userId))
+                                                        .map(user => (
+                                                            <img
+                                                                key={user.id} 
+                                                                src={`http://localhost:8000/images/${user.mg}`}
+                                                                alt="pp"
+                                                            />
+                                                        ))
+                                                    }   
                                                   <div class="dropdown"  >
                                                     
                                                       <div class="dropdown-content">

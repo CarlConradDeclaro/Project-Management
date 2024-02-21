@@ -136,6 +136,22 @@ app.post('/login', (req, res) => {
     });
 });
 
+app.put('/editProfile', upload.single('file'), (req, res) => {
+    const sqlUpdate = "UPDATE users SET name = ?, img = ? WHERE id = ?";
+
+    const name = req.body.username;
+    const userId = req.body.id;
+    const img = req.file.filename
+
+    db.query(sqlUpdate, [name,img, userId], (err, result) => {
+        if (err) {
+            console.error('Error updating numTask:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        console.log('numTask updated successfully');
+        res.json({ message: 'numTask updated successfully' });
+    });
+});
 
 
 app.post('/create', upload.single('file'), (req, res) => {

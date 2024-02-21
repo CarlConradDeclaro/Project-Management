@@ -181,6 +181,13 @@
     }
 
 
+    .project-profile{
+      background-color:rgba(255, 255, 255, 0.852);
+      width:50px;
+      height:50px;
+       border-radius:50%;
+  }
+  
   .project-profile{
     display: flex;
     gap: 10px;
@@ -208,12 +215,12 @@
      height: 40px;
    }
     .profile img{
-       display: flex;
+      display: flex;
       align-items: center;
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      
+     
     }
 
     .dropdown-content {
