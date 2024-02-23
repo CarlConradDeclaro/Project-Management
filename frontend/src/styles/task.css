@@ -23,7 +23,7 @@
  
 .task-table{
     margin: 0px auto 0 auto;
-    height: 300px;
+    min-height: 80%;
     max-width: 95%;
     
  }
@@ -180,7 +180,7 @@
 
 
 .task-user-body{
-     max-height: 65vh;
+     height: 65vh;
      overflow-y: auto;
 }
 .task-user-body p{
