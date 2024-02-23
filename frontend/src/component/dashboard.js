@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useTask, useProject, useUsers,useUserId } from "../projectDatas";
-
+//yawa
 function Dashboard(){
 
     const navigate = useNavigate()
@@ -67,23 +67,6 @@ function Dashboard(){
                                                     </div>                 
                                     </div>
                          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                          <h1 className="project-summary-title">Project summary</h1>
                          <div className="project-summary">
@@ -158,7 +141,7 @@ function Dashboard(){
                                                 })
                                             }
                                             {
-                                                JSON.parse(data.members).length > 5 && <p className='text'>{JSON.parse(data.members).length - 5}+</p>
+                                                JSON.parse(data.members).length > 5 && <p className='text'>+{JSON.parse(data.members).length - 5}</p>
                                             }
                                         </div>
                                         <div className="project-Assigned-Date"><p>{data.assignedDate.split('T')[0]}</p></div>

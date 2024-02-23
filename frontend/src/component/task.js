@@ -66,7 +66,7 @@ function Task() {
                                                         .map(user => (
                                                             <img
                                                                 key={user.id} 
-                                                                src={`http://localhost:8000/images/${user.mg}`}
+                                                                src={`http://localhost:8000/images/${user.img}`}
                                                                 alt="pp"
                                                             />
                                                         ))
