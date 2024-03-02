@@ -132,11 +132,26 @@
 .prodData-Task table,
 .prodData-Task td,
 .prodData-Task th {
-    border-spacing: 0px 20px;
+    border-spacing: 0px 20px; 
+} 
+
+
+.peoples-table tbody tr {
+    color: white;
+     height: 50px;
      
-}  
+}
+.peoples-table tbody tr  td{
+    color: white;
+     height: 50px;
+     margin: 10px;
+}
  
- 
+
+
+
+
+
 .prodData-Task td:nth-child(4){
     text-align: center;
     

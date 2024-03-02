@@ -322,3 +322,229 @@ function ProductData(){
 }
 
 export default ProductData;
+
+
+// const DisplayTask = ()=>{
+
+//     return(      
+//         <table  >             
+//         <thead>           
+//              <tr>
+//                   <th>Task  ({numTask})</th>
+//                   <th>Assignee</th>   
+//                   <th>Status</th>     
+//                   <th>Priority</th>      
+//                   <th>Due Date</th>
+                  
+//                  { prodOwner == user && <th>Controls</th> }   
+                 
+                 
+//             </tr>
+//        </thead>
+//               <tbody>
+//               {
+//                   create == true ?  
+//                   <>
+//                           <td className='task-details'>
+//                               <textarea    type='text' 
+//                                   value={taskDetails}
+//                                   onChange={(e) => setTaskDetails(e.target.value)}
+//                                   placeholder='255 words only'
+//                               />  
+//                           </td>                 
+//                           <td className='task-Assign'>
+
+//                             {
+//                               members.map((tag,index)=>(
+//                                   <div className="tag-member" key={index}>
+//                                   <span className='text'>{tag}</span>
+//                                   <span className='close'onClick={()=> removeMem(index)} >&times;</span>
+//                               </div>
+//                               ))
+//                               }
+//                           {
+                             
+//                              members.length < 1 && (
+//                               <input type='texts' 
+//                               className='tags-inputMem'
+//                                placeholder='Type Members'
+//                               onKeyDown={ handleKeyDownAssign}
+//                               required
+//                               /> 
+//                             )  
+
+//                             }
+//                           </td>      
+//                           <td className='task-Status'>
+//                               <select 
+//                               value={taskStatus}
+//                               onChange={(e) => setTaskStatus(e.target.value)}
+//                               >
+//                                   <option value="working">Working</option>
+//                               </select>
+//                           </td>
+
+//                           <td>
+//                               <select 
+//                                   value={priority}
+//                                   onChange={(e) => setPriority(e.target.value)}
+//                                   >
+//                                       <option value="low">Low</option>
+//                                       <option value="medium">Medium</option>
+//                                       <option value="high">High</option>
+//                               </select>
+//                           </td>       
+
+//                           <td className='task-DueDate' 
+//                           value={taskDueDate}
+//                           onChange={(e) => setTaskDueDate(e.target.value)}
+//                           > 
+//                                  <input type='date'/>
+//                           </td>
+//                           <td colSpan="2" className='task-Btn' >
+//                               <button onClick={handleSave}>Save</button>
+//                               <button onClick={e => setCreate(false)}>discard</button>
+//                           </td>  
+//                  </>
+//                   : <></>
+//               }           
+//                       {  
+//                             task.filter(data => data.projId === parseInt(prodId)).slice().reverse().map((data) => (
+//                               <tr key={data.id}  className='task' > 
+//                                   <td className="details-cell">{data.details}</td>
+//                                   <td  className='assign-user-profile'>
+//                                       <div>
+//                                           {data.assign}
+//                                           <div>
+//                                       <img src={`http://localhost:8000/images/nft.jpg`}  alt="Project" />
+
+//                                       </div>
+//                                       </div>
+                                     
+
+//                                   </td>
+//                                   <td className='prodData-status'><p>{data.status}</p></td>
+//                                   <td className={data.priority === "low" ?   'prodData-priority-low' :  data.priority === "medium" ? 'prodData-priority-medium' : 'prodData-priority-high'}><p>{data.priority}</p></td>                                    
+//                                   <td><p className='prodData-date'>{data.dueDate.split('T')[0]}</p></td>
+//                                  {
+//                                   prodOwner == user ? 
+//                                   <td colSpan="2" className='task-Btn'>
+//                                   <button onClick={e => setCreate(false)}>  Update  </button>
+//                                   <button onClick={() => handleDelete(data.id,parseInt(prodId) ,data.status)}>Delete</button>
+//                                  </td>  
+//                                   : 
+//                               //     <td colSpan="2" className='task-Btn'>
+//                               //     <button >Suggeestion</button>
+                                 
+//                               //    </td> 
+//                               <></>
+                            
+//                                  }
+                                 
+//                               </tr> 
+//                           ))
+                          
+//                       }               
+//               </tbody>
+//     </table>
+//     )
+// }
+
+
+
+
+// const DisplayPeople=()=>{
+
+//   return(
+//       <table className='peoples-table'>
+//             <thead>           
+//              <tr>                
+//                   <th>Name</th>   
+//                   <th>No. of Task done</th>   
+               
+               
+//             </tr>
+//        </thead>
+//        <tbody>
+
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+//             <tr>
+//                 <td>Carl Conrad Declaro</td>
+//                 <td>13</td>
+//             </tr>
+
+//        </tbody>
+           
+//       </table>
+//   )
+// }
+
+
+// const [showPeople,setShowPeople] = useState(false);
