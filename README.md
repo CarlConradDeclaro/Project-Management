@@ -3,15 +3,23 @@ Project management is the practice of organizing and guiding a team to complete 
 Think of it as a roadmap for your project, ensuring everyone involved stays on track and the project delivers the intended results.
 
 
-# link of the website will be provided once project is done and backend is deployed!.
+#link of the website will be provided once project is done and backend is deployed!.
 
 
 #Preview: 
+
+# Projects
 ![Screenshot 2024-03-17 085950](https://github.com/CarlConradDeclaro/Project-Management2.0/assets/110441309/f9181e17-ea31-4627-ac13-947c9313c9c5)
 
+# Task
+![Screenshot 2024-03-17 091748](https://github.com/CarlConradDeclaro/Project-Management2.0/assets/110441309/7efc27f8-b8c2-46de-b3dc-6db232bf284e)
+
+# dashboard
+![Screenshot 2024-03-17 092215](https://github.com/CarlConradDeclaro/Project-Management2.0/assets/110441309/3a1503d7-53af-45b7-8d88-4695d2244b9b)
 
 
-
+# Tasks
+![Screenshot 2024-03-17 092420](https://github.com/CarlConradDeclaro/Project-Management2.0/assets/110441309/f4c40a4f-d7ce-4705-b283-1f1931e6c042)
 
 
 
