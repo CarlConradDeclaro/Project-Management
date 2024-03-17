@@ -3,4 +3,9 @@ Project management is the practice of organizing and guiding a team to complete 
 Think of it as a roadmap for your project, ensuring everyone involved stays on track and the project delivers the intended results.
 
 
+Preview: 
+![Image Description](https://github.com/CarlConradDeclaro/Project-Management2.0/issues/21#issue-2190416978)
 
+
+
+link of the website will be provided once project is done and backend is deployed!
