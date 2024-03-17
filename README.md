@@ -3,7 +3,7 @@ Project management is the practice of organizing and guiding a team to complete 
 Think of it as a roadmap for your project, ensuring everyone involved stays on track and the project delivers the intended results.
 
 
-# link of the website will be provided once project is done and backend is deployed!.
+# A link to the website will be provided once the project is done and the backend is deployed!.
 
 
 #Preview: 
