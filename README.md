@@ -4,7 +4,7 @@ Think of it as a roadmap for your project, ensuring everyone involved stays on t
 
 
 Preview: 
-![Image Description](https://github.com/CarlConradDeclaro/Project-Management2.0/issues/21#issue-2190416978)
+![Screenshot 2024-03-17 085950](https://github.com/CarlConradDeclaro/Project-Management2.0/assets/110441309/f9181e17-ea31-4627-ac13-947c9313c9c5)
 
 
 
